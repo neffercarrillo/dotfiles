@@ -1,0 +1,10 @@
+[user]
+	name = Neffer Carrillo
+	email = dev@neffercarrillo.com
+[core]
+	editor = emacs
+	pager = less
+[push]
+	default = matching
+[alias]
+	co = checkout
