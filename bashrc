@@ -37,6 +37,7 @@ alias rstr16='date | sha256sum | head -c 16 ; echo'
 
 # update
 alias yup='sudo dnf update -y'
+alias yush='sudo dnf update -y;shutdown -h now'
 
 # uncategorized
 alias su='su -l'
