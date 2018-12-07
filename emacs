@@ -20,6 +20,9 @@
 (my/set-custom-home-dir)
 
 
+;;;; theme
+(load-theme 'misterioso)
+
 ;;;; vars
 (setq *my-dev-dir* (concat *my-custom-home-dir* "/dev"))
 (setq *my-docs-dir* (concat *my-custom-home-dir* "/docs"))
