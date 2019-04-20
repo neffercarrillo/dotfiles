@@ -36,9 +36,9 @@ alias ..='cd ..'
 alias rstr16='date | sha256sum | head -c 16 ; echo'
 
 # update
-alias yup='sudo dnf update -y'
+alias yuup='sudo dnf update -y'
 alias yush='sudo dnf update -y;shutdown -h now'
-alias yur='sudo dnf update -y;shutdown -r now'
+alias yure='sudo dnf update -y;shutdown -r now'
 
 # uncategorized
 alias su='su -l'
@@ -108,16 +108,16 @@ parse_git_branch_color() {
 #
 
 # prompt
-PS1="$git_white\u"
-PS1+='@'
-PS1+='\h'             # hostname
-PS1+=':'              # space after hostname
-PS1+="\w$(parse_git_branch_color)\$(parse_git_branch)$git_white"             # current working directory
-PS1+=' '              # space after user symbol
+#PS1="$git_white\u"
+#PS1+='@'
+#PS1+='\h'             # hostname
+#PS1+=':'              # space after hostname
+#PS1+="\w$(parse_git_branch_color)\$(parse_git_branch)$git_white"             # current working directory
+#PS1+=' '              # space after user symbol
 # PS1+='\n'           # add a line carriage at the end of the line before cursor
-PS1+='\$'             # user symbol ($ for user or # for root)
-PS1+=' '              # space after user symbol
-export PS1
+#PS1+='\$'             # user symbol ($ for user or # for root)
+#PS1+=' '              # space after user symbol
+#export PS1
 
 
 ## autoexecute
