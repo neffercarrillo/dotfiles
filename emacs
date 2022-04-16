@@ -21,7 +21,7 @@
 
 
 ;;;; theme
-(load-theme 'misterioso)
+(load-theme 'wombat)
 
 ;;;; vars
 (setq *my-dev-dir* (concat *my-custom-home-dir* "/dev"))
