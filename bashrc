@@ -5,6 +5,12 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+
+## autoexecute
+# clear history on log in
+cat /dev/null > ~/.bash_history && history -c
+
+
 ## environment
 export BROWSER='firefox'
 export EDITOR='emacs'
@@ -53,10 +59,3 @@ alias reb='sudo shutdown -r now'
 alias semacs='sudo emacs'
 alias ct='crontab `$MYDOCS/config/crontab`'
 alias ppjson='python -m json.tool'
-
-
-## autoexecute
-# clear history on log in
-cat /dev/null > ~/.bash_history && history -c
-
-
