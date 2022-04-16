@@ -34,6 +34,7 @@ alias ..='cd ..'
 
 # generate random string
 alias rstr16='date | sha256sum | head -c 16 ; echo'
+alias rstr10='date | sha256sum | head -c 10 ; echo'
 
 # update
 alias yuup='sudo dnf update -y'
