@@ -42,10 +42,15 @@ alias ..='cd ..'
 alias rstr16='date | sha256sum | head -c 16 ; echo'
 alias rstr10='date | sha256sum | head -c 10 ; echo'
 
-# update
-alias yuup='sudo dnf update -y'
-alias yush='sudo dnf update -y;shutdown -h now'
-alias yure='sudo dnf update -y;shutdown -r now'
+## update fedora
+# alias yuup='sudo dnf update -y'
+# alias yush='sudo dnf update -y;shutdown -h now'
+# alias yure='sudo dnf update -y;shutdown -r now'
+
+# update debian
+alias yuup='sudo apt update && sudo apt upgrade -y'
+alias yush='sudo apt update && sudo apt upgrade -y && sudo shutdown -h now'
+alias yure='sudo apt update && sudo apt upgrade -y && sudo shutdown -r now'
 
 # uncategorized
 alias su='su -l'
