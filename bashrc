@@ -28,9 +28,9 @@ alias cp='cp -i'
 
 # list stuff
 alias l='ls --color=always'
-alias ll='ls -l'
-alias l.='ls -a'
-alias ll.='ls -la'
+alias ll='ls -l --color=always'
+alias l.='ls -a --color=always'
+alias ll.='ls -la --color=always'
 
 # reload bashrc
 alias r='source ~/.bashrc'
