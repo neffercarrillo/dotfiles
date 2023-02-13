@@ -1,15 +1,8 @@
 set nocompatible
-
 set autoindent
-
 set ruler
-
 set incsearch
-
-set list
-
+set nolist
 set tabstop=4
 set shiftwidth=4
-
 set showmatch
-
