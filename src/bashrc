@@ -16,6 +16,7 @@ export VISUAL='emacs'
 export PAGER='less'
 export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 export MYSTUFF='workspace'
+export PATH=~/.local/bin:~/workspace/dev/bin:$PATH
 
 ## aliases
 # safety
@@ -24,10 +25,13 @@ alias mv='mv -i'
 alias cp='cp -i'
 
 # list stuff
-alias l='ls --color=always'
-alias ll='ls -l --color=always'
-alias l.='ls -a --color=always'
-alias ll.='ls -la --color=always'
+alias l='ls --color=always --group-directories-first'
+alias ll='ls -l --color=always --group-directories-first'
+alias l.='ls -a --color=always --group-directories-first'
+alias ll.='ls -la --color=always --group-directories-first'
+
+# grep
+alias grep='grep --color=always'
 
 # reload bashrc
 alias r='source ~/.bashrc'
@@ -37,6 +41,8 @@ alias ..='cd ..'
 alias dev='cd ~/$MYSTUFF/dev'
 alias notes='cd ~/$MYSTUFF/notes'
 alias dl='cd ~/Downloads'
+alias bin='cd ~/$MYSTUFF/dev/bin'
+alias conf='cd ~/.config'
 
 # generate random string
 alias rstr16='date | sha256sum | head -c 16 ; echo'
@@ -58,7 +64,12 @@ alias off='systemctl poweroff'
 alias reb='systemctl reboot'
 alias semacs='sudo emacs'
 alias ppjson='python -m json.tool'
-alias brc='vim ~/.bashrc'
-alias vrc='vim ~/.vimrc'
-alias ideas='vim ~/workspace/notes/ideas'
-alias bookmarks='vim ~/workspace/notes/bookmarks'
+alias cbash='$EDITOR ~/.bashrc'
+alias cvim='$EDITOR ~/.vimrc'
+alias ideas='$EDITOR ~/workspace/notes/ideas'
+alias bk='$EDITOR ~/workspace/notes/bookmarks'
+alias ai='sudo apt update && sudo apt install -y'
+alias au='sudo apt update && sudo apt upgrade -y'
+alias as='apt search'
+alias aus='sudo apt update && sudo apt upgrade -y && systemctl poweroff'
+alias aur='sudo apt update && sudo apt upgrade -y && systemctl reboot'

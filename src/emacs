@@ -1,6 +1,5 @@
-;;;; on open...
+;;-*-mode:elisp-byte-code-*-
 
-;; set custom dir variables
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -8,22 +7,29 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; theme
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(load-theme 'wombat)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; vars
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (setq *my-custom-home-dir-windows* "c:/workspace")
 (setq *my-custom-home-dir-linux* "~/workspace")
 (setq *my-custom-home-dir* "")
-
-;; set *my-custom-home-dir
 (defun my/set-custom-home-dir()
     (if (eq system-type 'windows-nt)
 	(setq *my-custom-home-dir* *my-custom-home-dir-windows*)
         (setq *my-custom-home-dir* *my-custom-home-dir-linux*)))
 (my/set-custom-home-dir)
-
-
-;;;; theme
-(load-theme 'wombat)
-
-;;;; vars
 (setq *my-dev-dir* (concat *my-custom-home-dir* "/dev"))
 (setq *my-docs-dir* (concat *my-custom-home-dir* "/docs"))
 (setq *my-docs-archive-dir* (concat *my-custom-home-dir* "/docs-archive"))
@@ -34,13 +40,16 @@
 (setq *my-elisp-dir* (concat *my-custom-home-dir* "/dev/emacs/elisp"))
 
 
-;;;; functions
-;; reload init.el
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; functions
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defun my/reload-dot-emacs()
   (interactive)
   (load-file "~/.emacs.d/init.el"))
 
-;; newdoc function
 (setq newdoc-dir (concat *my-docs-dir* "/_notes"))
 (defun my/newdoc(doc)
   (interactive "sNew doc name: ") 
@@ -88,55 +97,46 @@
   (find-file (concat (my/get-user-root-dir) "/notes/todo.org")))
 
 
-;;;; keybindings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; keybindings
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))       ; use escape instead of C-g
 (global-set-key (kbd "C-S-l") 'my/today-long)
 (global-set-key (kbd "C-S-k") 'my/today-short)
 (global-set-key (kbd "C-c t") 'my/get-todo-file)
 
 
-;;;; misc.
-;; enable copy-paste via "usual" commands
-(cua-mode t)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; misc
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; no startup message
-(setq inhibit-startup-message t)                 
-
-;; disable backup files
-(setq make-backup-files nil)                     
-
-;; disable auto save
-(setq auto-save-default nil)                     
-
-;; debug messages on
-(setq debug-on-error t)
-
-;; don't use tabs
-(setq-default indent-tabs-mode nil)
-
-;; make tab key do indent first then completion.
-(setq-default tab-always-indent 'complete)
-
-;; maximize screen on start
-(setq initial-frame-alist
-       '((fullscreen . maximized)))
-
-;; show column numbers
-(setq column-number-mode t)
-
-;; show battery percentage
-(display-battery-mode)
-
-;; turn off confirmation of new buffer/file
-(setq confirm-nonexistent-file-or-buffer nil)
-
-;; set default shell
+(cua-mode t) ;; enable copy-paste via "usual" commands
+(setq inhibit-startup-message t)                  ;; no startup message
+(setq make-backup-files nil)                      ;; disable backup files
+(setq auto-save-default nil)                     ;; disable auto save
+(setq debug-on-error t) ;; debug messages on
+(setq-default indent-tabs-mode nil) ;; don't use tabs
+(setq-default tab-always-indent 'complete) ;; make tab key do indent first then completion.
+(setq initial-frame-alist '((fullscreen . maximized))) ;; maximize screen on start
+(setq column-number-mode t) ;; show column numbers
+(display-battery-mode) ;; show battery percentage
+(setq confirm-nonexistent-file-or-buffer nil) ;; turn off confirmation of new buffer/file
 (if (eq system-type 'windows-nt)
   (setq explicit-shell-file-name "C:/Program Files/Git/bin/bash.exe")
-  (setq explicit-shell-file-name "/bin/bash"))
+  (setq explicit-shell-file-name "/bin/bash")) ;; set default shell
 
 
-;;;; packages
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; packages
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; dired
 (setq dired-listing-switches "-la --group-directories-first")
 
@@ -173,35 +173,8 @@
 ;; org-mode
 (add-hook 'org-mode-hook
           (lambda ()
-            (org-indent-mode t))
-          t)
+            (org-indent-mode t)) t)
 
-
-;;;; functions
-
-;; print today's date in ISO format.
-(defun my/today-short()
-  "Insert string for today's date formatted in ISO standard format."
-  (interactive)                 
-  (insert (format-time-string "%Y-%m-%d")))
-
-;; print today's date in full.
-(defun my/today-long()
-  "Insert string for today's date including day of the week."
-  (interactive)                 
-  (insert (format-time-string "%A, %B %d, %Y")))
-
-
-;;;; keybindings
-
-;; use escape instead of C-g
-(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
-
-;; bind my/today-long
-(global-set-key (kbd "C-S-l") 'my/today-long)
-
-;; bind my/today-short
-(global-set-key (kbd "C-S-k") 'my/today-short)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

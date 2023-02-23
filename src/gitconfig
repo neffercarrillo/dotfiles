@@ -1,6 +1,6 @@
 [user]
 	name = Neffer Carrillo
-	email = dev@neffercarrillo.com
+	email = neffer@neffercarrillo.com
 [core]
 	editor = emacs
 	pager = less
@@ -9,4 +9,4 @@
 [alias]
 	co = checkout
 [init]
-  defaultBranch = main
+        defaultBranch = main
