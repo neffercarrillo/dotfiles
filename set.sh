@@ -3,7 +3,7 @@
 SCRIPT_NAME="set.sh"
 
 for i in $(ls src/); do
-    if [ -h ~/.$i ]; then
+    if [ -h ~/.$i ] || [ -f ~/.$i ]; then
 	echo $SCRIPT_NAME": deleting file" ~/.$i
 	rm -f ~/.$i
 	echo $SCRIPT_NAME": creating link to ."$i "from "$(pwd)/src/$i

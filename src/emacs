@@ -48,7 +48,7 @@
 
 (defun my/reload-dot-emacs()
   (interactive)
-  (load-file "~/.emacs.d/init.el"))
+  (load-file "~/.emacs"))
 
 (setq newdoc-dir (concat *my-docs-dir* "/_notes"))
 (defun my/newdoc(doc)
@@ -96,6 +96,26 @@
   (interactive)
   (find-file (concat (my/get-user-root-dir) "/notes/todo.org")))
 
+(defun new-note()
+  (find-file (concat *my-notes-dir* "/" (format-time-string "%Y-%m-%d_%H-%M-%S") ".org")))
+
+(defun new-info()
+  (interactive)
+  (new-note)
+  (insert "* {{TITLE HERE}} :info:"))
+
+(defun new-howto()
+  (interactive)
+  (new-note)
+  (insert "* {{TITLE HERE}} :howto: \n** Steps\n\n** References\n\n** Notes\n\n"))
+
+(defun cemacsa()
+  (interactive)
+  (find-file "~/.emacs"))
+
+(defun cbash()
+  (interactive)
+  (find-file "~/.bashrc"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -103,10 +123,12 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define-key key-translation-map (kbd "ESC") (kbd "C-g"))       ; use escape instead of C-g
+(define-key key-translation-map (kbd "ESC") (kbd "C-g"))                        ;; use escape instead of C-g
 (global-set-key (kbd "C-S-l") 'my/today-long)
 (global-set-key (kbd "C-S-k") 'my/today-short)
 (global-set-key (kbd "C-c t") 'my/get-todo-file)
+(global-set-key (kbd "C-S-i") 'new-info)                                        ;; create a new info note
+(global-set-key (kbd "C-S-h") 'new-howto)                                       ;; create a new howto note
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -165,7 +187,7 @@
 (setq vc-follow-symlinks t)
 
 ;; visual-line-mode
-(visual-line-mode t)
+(visual-line-mode)
 
 ;; TODO: check what this does.
 ;; (wrap-region-global-mode t)
@@ -174,6 +196,7 @@
 (add-hook 'org-mode-hook
           (lambda ()
             (org-indent-mode t)) t)
+(setq org-agenda-files '("~/workspace/notes"))
 
 
 (custom-set-variables
