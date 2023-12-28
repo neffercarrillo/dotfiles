@@ -30,14 +30,14 @@
 	(setq *my-custom-home-dir* *my-custom-home-dir-windows*)
         (setq *my-custom-home-dir* *my-custom-home-dir-linux*)))
 (my/set-custom-home-dir)
-(setq *my-dev-dir* (concat *my-custom-home-dir* "/dev"))
+(setq *my-repos-dir* (concat *my-custom-home-dir* "/repos"))
 (setq *my-docs-dir* (concat *my-custom-home-dir* "/docs"))
 (setq *my-docs-archive-dir* (concat *my-custom-home-dir* "/docs-archive"))
 (setq *my-logs-dir* (concat *my-custom-home-dir* "/log"))
 (setq *my-tmp-dir* (concat *my-custom-home-dir* "/tmp"))
 (setq *my-notes-dir* (concat *my-custom-home-dir* "/notes"))
 (setq *my-notes-in-docs-dir* (concat *my-custom-home-dir* "/docs/_notes"))
-(setq *my-elisp-dir* (concat *my-custom-home-dir* "/dev/emacs/elisp"))
+(setq *my-elisp-dir* (concat *my-custom-home-dir* "/repos/emacs/elisp"))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -80,9 +80,9 @@
   (interactive)
   (my/goto-dir my/snippets-dir))
 
-(defun my/goto-dev()
+(defun my/goto-repos()
   (interactive)
-  (my/goto-dir my/dev-dir))
+  (my/goto-dir my/repos-dir))
 
 (defun my/goto-home()
   (interactive)
@@ -204,9 +204,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes '(tsdh-dark))
  '(custom-safe-themes
-   (quote
-    ("a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e" default))))
+   '("a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e" default)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
