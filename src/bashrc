@@ -16,7 +16,7 @@ export VISUAL='emacs'
 export PAGER='less'
 export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 export MYSTUFF='workspace'
-#export PATH=~/.local/bin:~/workspace/dev/bin:$PATH
+export PATH=~/.local/bin:$PATH
 
 ## aliases
 # safety
@@ -39,18 +39,20 @@ alias r='source ~/.bashrc'
 
 # navigation 
 alias ..='cd ..'
-alias dev='cd ~/$MYSTUFF/dev'
+alias dev='cd ~/$MYSTUFF/repos'
 alias notes='cd ~/$MYSTUFF/notes'
 alias dl='cd ~/Downloads'
 alias bin='cd ~/$MYSTUFF/dev/bin'
 alias conf='cd ~/.config'
+alias vmimages='cd ~/.local/share/libvirt/images'
+alias repos='cd ~/$MYSTUFF/repos'
 
 # generate random string
 alias rstr16='date | sha256sum | head -c 16'
 alias rstr10='date | sha256sum | head -c 10'
 
-# TODO -> generate random email address
-# alias emailgen='date | sha256sum | head -c 10'
+# generate random email address
+alias emailgen='emailgen.sh | xclip -selection clip-board'
 
 # update debian
 alias yuup='sudo apt update && sudo apt upgrade -y && sudo apt autoremove'
@@ -73,7 +75,9 @@ alias cvim='$EDITOR ~/.vimrc'
 alias ideas='$EDITOR ~/workspace/notes/ideas'
 alias bk='$EDITOR ~/workspace/notes/bookmarks'
 alias ai='sudo apt update && sudo apt install -y'
-alias au='sudo apt update && sudo apt upgrade -y'
+alias au='sudo apt update && sudo apt upgrade -y && sudo apt autoremove'
 alias as='apt search'
 alias aush='sudo apt update && sudo apt upgrade -y && systemctl poweroff'
 alias aure='sudo apt update && sudo apt upgrade -y && systemctl reboot'
+alias tmpvm='virt-clone --connect qemu:///system --original debian12-gnome --name tmpvm --auto-clone && virsh --connect qemu:///system start tmpvm && virt-viewer --connect qemu:///system --attach tmpvm && virsh --connect qemu:///system undefine tmpvm && rm -f ~/.local/share/libvirt/images/tmpvm.qcow2'
+alias dig='dig +noall +answer'
