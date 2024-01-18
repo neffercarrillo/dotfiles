@@ -13,7 +13,7 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load-theme 'wombat)
+(load-theme 'wheatgrass)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -137,21 +137,21 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(cua-mode t) ;; enable copy-paste via "usual" commands
-(setq inhibit-startup-message t)                  ;; no startup message
-(setq make-backup-files nil)                      ;; disable backup files
-(setq auto-save-default nil)                     ;; disable auto save
-(setq debug-on-error t) ;; debug messages on
-(setq-default indent-tabs-mode nil) ;; don't use tabs
-(setq-default tab-always-indent 'complete) ;; make tab key do indent first then completion.
-(setq initial-frame-alist '((fullscreen . maximized))) ;; maximize screen on start
-(setq column-number-mode t) ;; show column numbers
-(display-battery-mode) ;; show battery percentage
-(setq confirm-nonexistent-file-or-buffer nil) ;; turn off confirmation of new buffer/file
+(cua-mode t)                                                                    ;; enable copy-paste via "usual" commands
+(setq inhibit-startup-message t)                                                ;; no startup message
+(setq make-backup-files nil)                                                    ;; disable backup files
+(setq auto-save-default nil)                                                    ;; disable auto save
+(setq debug-on-error t)                                                         ;; debug messages on
+(setq-default indent-tabs-mode nil)                                             ;; don't use tabs
+(setq-default tab-always-indent 'complete)                                      ;; make tab key do indent first then completion.
+(setq initial-frame-alist '((fullscreen . maximized)))                          ;; maximize screen on start
+(setq column-number-mode t)                                                     ;; show column numbers
+(display-battery-mode)                                                          ;; show battery percentage
+(setq confirm-nonexistent-file-or-buffer nil)                                   ;; turn off confirmation of new buffer/file
 (if (eq system-type 'windows-nt)
   (setq explicit-shell-file-name "C:/Program Files/Git/bin/bash.exe")
-  (setq explicit-shell-file-name "/bin/bash")) ;; set default shell
-
+  (setq explicit-shell-file-name "/bin/bash"))                                  ;; set default shell
+(tool-bar-mode -1)                                                              ;; disable toolbar at the top of buffers
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -186,8 +186,8 @@
 ;; vc-mode
 (setq vc-follow-symlinks t)
 
-;; visual-line-mode
-(visual-line-mode t)
+;; set word wrapping for all buffers w/ global-visual-line-mode
+(global-visual-line-mode t)
 
 ;; TODO: check what this does.
 ;; (wrap-region-global-mode t)
