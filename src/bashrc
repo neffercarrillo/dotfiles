@@ -15,10 +15,14 @@ export EDITOR='emacs'
 export VISUAL='emacs'
 export PAGER='less'
 export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-export MYSTUFF='workspace'
+export MYSTUFF='%HOME/workspace'
 export PATH=~/.local/bin:$PATH
 
 ## aliases
+alias eb='$EDITOR ~/.bashrc'
+alias ev='$EDITOR ~/.vimrc'
+alias ee='$EDITOR ~/.emacs'
+
 # safety
 alias rm='rm -i'
 alias mv='mv -i'
@@ -39,20 +43,17 @@ alias r='source ~/.bashrc'
 
 # navigation 
 alias ..='cd ..'
-alias dev='cd ~/$MYSTUFF/repos'
-alias notes='cd ~/$MYSTUFF/notes'
+alias dev='cd $MYSTUFF/repos'
+alias notes='cd $MYSTUFF/notes'
 alias dl='cd ~/Downloads'
-alias bin='cd ~/$MYSTUFF/repos/bin'
+alias bin='cd $MYSTUFF/repos/bin'
 alias conf='cd ~/.config'
 alias vmimages='cd ~/.local/share/libvirt/images'
-alias repos='cd ~/$MYSTUFF/repos'
+alias repos='cd $MYSTUFF/repos'
 
 # generate random string
 alias rstr16='date | sha256sum | head -c 16'
 alias rstr10='date | sha256sum | head -c 10'
-
-# generate random email address
-alias emailgen='emailgen.sh | xclip -selection clip-board'
 
 # update debian
 alias yuup='sudo apt update && sudo apt upgrade -y && sudo apt autoremove'
@@ -70,9 +71,6 @@ alias off='systemctl poweroff'
 alias reb='systemctl reboot'
 alias semacs='sudo emacs'
 alias ppjson='python -m json.tool'
-alias cbash='$EDITOR ~/.bashrc'
-alias cvim='$EDITOR ~/.vimrc'
-alias ideas='$EDITOR ~/workspace/notes/ideas'
 alias bk='$EDITOR ~/workspace/notes/bookmarks'
 alias ai='sudo apt update && sudo apt install -y'
 alias au='sudo apt update && sudo apt upgrade -y && sudo apt autoremove'
