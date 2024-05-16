@@ -1,0 +1,65 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+my $HOME = $ENV{"HOME"};
+my $PWD = $ENV{"PWD"};
+
+print "Setting up environment...\n";
+
+# link files - bash
+print "Linking bash files...\n";
+system "rm $HOME/.bash_profile && ln -s $PWD/bash/.bash_profile $HOME/.bash_profile";
+system "rm $HOME/.bashrc && ln -s $PWD/bash/.bashrc $HOME/.bashrc";
+print "Done with bash files.\n";
+
+# link files - emacs
+print "Linking emacs files...\n";
+system "rm $HOME/.emacs && ln -s $PWD/emacs/.emacs $HOME/.emacs";
+print "Done with emacs files.\n";
+
+# link files - gdb
+print "Linking gdb files...\n";
+system "rm $HOME/.gdbinit && ln -s $PWD/gdb/.gdbinit $HOME/.gdbinit";
+print "Done with gdb files.\n";
+
+
+# link files - git
+print "Linking git files...\n";
+system "rm $HOME/.gitconfig && ln -s $PWD/git/.gitconfig $HOME/.gitconfig";
+system "rm $HOME/.gitignore && ln -s $PWD/git/.gitignore $HOME/.gitignore";
+print "Done with git files.\n";
+
+
+# link files - irssi
+print "Linking irssi files...\n";
+
+print "Done with irssi files.\n";
+
+
+# link files - lynx
+print "Linking lynx files...\n";
+
+print "Done with lynx files.\n";
+
+
+# link files - tmux
+print "Linking tmux files...\n";
+system "rm $HOME/.tmux.conf && ln -s $PWD/tmux/.tmux.conf $HOME/.tmux.conf";
+print "Done with tmux files.\n";
+
+
+# link files - vim
+print "Linking vim files...\n";
+system "rm $HOME/.vimrc && ln -s $PWD/vim/.vimrc $HOME/.vimrc";
+print "Done with vim files.\n";
+
+
+# link files - x-server
+print "Linking x-server files...\n";
+system "rm $HOME/.Xdefaults && ln -s $PWD/x-server/.Xdefaults $HOME/.Xdefaults";
+print "Done with x-server files.\n";
+
+
+print "Done setting up evironment. God speed and Happy computing!\n";
