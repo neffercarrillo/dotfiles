@@ -123,7 +123,7 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define-key key-translation-map (kbd "ESC") (kbd "C-g"))                        ;; use escape instead of C-g
+;;(define-key key-translation-map (kbd "ESC") (kbd "C-g"))                        ;; use escape instead of C-g
 (global-set-key (kbd "C-S-l") 'my/today-long)
 (global-set-key (kbd "C-S-k") 'my/today-short)
 (global-set-key (kbd "C-c t") 'my/get-todo-file)
