@@ -19,6 +19,8 @@ export MYSTUFF=$HOME'/workspace'
 export PATH=~/.local/bin:$PATH
 
 ## aliases
+alias emacs='emacsclient -t'
+alias dot='cd $MYSTUFF/repos/dotfiles'
 alias eb='$EDITOR ~/.bashrc'
 alias ev='$EDITOR ~/.vimrc'
 alias ee='$EDITOR ~/.emacs'

@@ -17,13 +17,13 @@ print "Done with bash files.\n";
 # link files - emacs
 print "Linking emacs files...\n";
 system "rm $HOME/.emacs && ln -s $PWD/emacs/.emacs $HOME/.emacs";
+system "rm $HOME/.config/systemd/user/emacs.service && ln -s $PWD/emacs/emacs.service $HOME/.config/systemd/user/emacs.service";
 print "Done with emacs files.\n";
 
 # link files - gdb
 print "Linking gdb files...\n";
 system "rm $HOME/.gdbinit && ln -s $PWD/gdb/.gdbinit $HOME/.gdbinit";
 print "Done with gdb files.\n";
-
 
 # link files - git
 print "Linking git files...\n";
