@@ -31,24 +31,26 @@ system "rm $HOME/.gitconfig && ln -s $PWD/git/.gitconfig $HOME/.gitconfig";
 system "rm $HOME/.gitignore && ln -s $PWD/git/.gitignore $HOME/.gitignore";
 print "Done with git files.\n";
 
-
 # link files - irssi
 print "Linking irssi files...\n";
 
 print "Done with irssi files.\n";
-
 
 # link files - lynx
 print "Linking lynx files...\n";
 
 print "Done with lynx files.\n";
 
+# link files - mpv
+print "Linking mpv files...\n";
+system "rm $HOME/.config/mpv/mpv.conf && ln -s $PWD/mpv/mpv.conf $HOME/.config/mpv/mpv.conf";
+print "Done with mpv files.\n";
+
 
 # link files - tmux
 print "Linking tmux files...\n";
 system "rm $HOME/.tmux.conf && ln -s $PWD/tmux/.tmux.conf $HOME/.tmux.conf";
 print "Done with tmux files.\n";
-
 
 # link files - vim
 print "Linking vim files...\n";
