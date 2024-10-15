@@ -17,7 +17,6 @@
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; theme
@@ -25,7 +24,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (load-theme 'wheatgrass)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -44,12 +42,8 @@
 (setq *my-repos-dir* (concat *my-custom-home-dir* "/repos"))
 (setq *my-docs-dir* (concat *my-custom-home-dir* "/docs"))
 (setq *my-docs-archive-dir* (concat *my-custom-home-dir* "/docs-archive"))
-(setq *my-logs-dir* (concat *my-custom-home-dir* "/log"))
-(setq *my-tmp-dir* (concat *my-custom-home-dir* "/tmp"))
-(setq *my-notes-dir* (concat *my-custom-home-dir* "/notes"))
-(setq *my-notes-in-docs-dir* (concat *my-custom-home-dir* "/docs/_notes"))
-(setq *my-elisp-dir* (concat *my-custom-home-dir* "/repos/emacs/elisp"))
-
+(setq *my-notes-dir* (concat *my-repos-dir* "/notes"))
+(setq *my-lists-dir* (concat *my-repos-dir* "/lists"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -57,6 +51,35 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun /l ()
+  (interactive)
+  (dired *my-lists-dir*))
+
+(defun /n ()
+  (interactive)
+  (dired *my-notes-dir*))
+
+(defun create-org-file-with-timestamp ()
+  "Create a new org file with the current date and time in the filename, in ISO format without spaces or colons, and switch to the new buffer."
+  (interactive)
+  (let* ((current-time (format-time-string "%Y-%m-%dT%H-%M-%S"))
+         (filename (concat current-time ".org"))
+         (filepath (concat *my-notes-dir* "/" filename)))
+    (find-file filepath) ;; Open or create the new file and switch to it
+    (insert "#+title: " "\n" "#+author: Neffer Carrillo" "\n" "#+date: " current-time "\n" "#+filetags: "  "\n\n"))) ;; Insert the title and stay in the new bufferx
+
+(defun nn ()
+  (interactive)
+  (create-org-file-with-timestamp))
+
+(defun cb()
+    (interactive)
+  (insert "#+name: \n#+begin_src\n\n\n#+end_src"))
+
+(defun ee()
+  (interactive)
+  (find-file "~/.emacs"))
+  
 (defun my/reload-dot-emacs()
   (interactive)
   (load-file "~/.emacs"))
@@ -74,12 +97,12 @@
   (write-region (concat "#+TITLE: " doc "\n\n") nil final-doc-name)
   (find-file final-doc-name))
 
-(defun my/today-short()
+(defun my/templates/date/today-short()
   "Insert string for today's date formatted in ISO standard format."
   (interactive)                 
   (insert (format-time-string "%Y-%m-%d")))
 
-(defun my/today-long()
+(defun my/templates/date/today-long()
   "Insert string for today's date including day of the week."
   (interactive)                 
   (insert (format-time-string "%A, %B %d, %Y")))
@@ -225,7 +248,8 @@
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes '(tsdh-dark))
  '(custom-safe-themes
-   '("a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e" default)))
+   '("a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e" default))
+ '(org-agenda-files nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
