@@ -1,5 +1,5 @@
 [user]
-	name = Neffer Carrillo
+        name = Neffer Carrillo
 	email = neffer@neffercarrillo.com
 [core]
 	editor = emacs
@@ -9,4 +9,4 @@
 [alias]
 	co = checkout
 [init]
-    defaultBranch = min
+        defaultBranch = main
