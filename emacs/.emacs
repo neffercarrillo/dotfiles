@@ -40,16 +40,18 @@
         (setq *my-custom-home-dir* *my-custom-home-dir-linux*)))
 (my/set-custom-home-dir)
 (setq *my-repos-dir* (concat *my-custom-home-dir* "/repos"))
-(setq *my-docs-dir* (concat *my-custom-home-dir* "/docs"))
-(setq *my-docs-archive-dir* (concat *my-custom-home-dir* "/docs-archive"))
-(setq *my-notes-dir* (concat *my-repos-dir* "/notes"))
-(setq *my-lists-dir* (concat *my-repos-dir* "/lists"))
+(setq *my-notes-dir* (concat *my-repos-dir* "/local/notes"))
+(setq *my-lists-dir* (concat *my-repos-dir* "/local/lists"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; functions
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun /gh ()
+  (interactive)
+  (dired (concat *my-repos-dir* "/github/neffercarrillo")))
 
 (defun /l ()
   (interactive)
@@ -73,29 +75,20 @@
   (create-org-file-with-timestamp))
 
 (defun cb()
-    (interactive)
+  (interactive)
   (insert "#+name: \n#+begin_src\n\n\n#+end_src"))
 
 (defun ee()
   (interactive)
   (find-file "~/.emacs"))
+
+(defun eb()
+  (interactive)
+  (find-file "~/.bashrc"))
   
 (defun my/reload-dot-emacs()
   (interactive)
   (load-file "~/.emacs"))
-
-(setq newdoc-dir (concat *my-docs-dir* "/_notes"))
-(defun my/newdoc(doc)
-  (interactive "sNew doc name: ") 
-  (setq root-doc-dir (concat *my-custom-home-dir* "/docs"))
-  (setq new-doc-name (replace-regexp-in-string " " "-" doc))
-  (setq new-doc-dir (concat (format-time-string "%Y%m%d-%H%M%S") "-" new-doc-name))
-  (setq final-doc-name (concat newdoc-dir "/" (format-time-string "%Y%m%d-%H%M%S") "-" new-doc-name ".org"))
-  (mkdir (concat root-doc-dir "/" new-doc-dir))
-  (mkdir (concat root-doc-dir "/" new-doc-dir "/reference"))
-  (mkdir (concat root-doc-dir "/" new-doc-dir "/archive"))
-  (write-region (concat "#+TITLE: " doc "\n\n") nil final-doc-name)
-  (find-file final-doc-name))
 
 (defun my/templates/date/today-short()
   "Insert string for today's date formatted in ISO standard format."
@@ -110,10 +103,6 @@
 (defun my/goto-dir(dir)
   (dired dir))
 
-(defun my/goto-snippets()
-  (interactive)
-  (my/goto-dir my/snippets-dir))
-
 (defun my/goto-repos()
   (interactive)
   (my/goto-dir my/repos-dir))
@@ -121,14 +110,6 @@
 (defun my/goto-home()
   (interactive)
   (my/goto-dir (my/get-user-root-dir)))
-
-(defun my/goto-docs()
-  (interactive)
-  (my/goto-dir my/docs-dir))
-
-(defun my/get-todo-file()
-  (interactive)
-  (find-file (concat (my/get-user-root-dir) "/notes/todo.org")))
 
 (defun new-note()
   (find-file (concat *my-notes-dir* "/" (format-time-string "%Y-%m-%d_%H-%M-%S") ".org")))
@@ -142,14 +123,6 @@
   (interactive)
   (new-note)
   (insert "* {{TITLE HERE}} :howto: \n** Steps\n\n** References\n\n** Notes\n\n"))
-
-(defun cemacsa()
-  (interactive)
-  (find-file "~/.emacs"))
-
-(defun cbash()
-  (interactive)
-  (find-file "~/.bashrc"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
