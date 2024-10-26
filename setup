@@ -39,14 +39,10 @@ system "rm $HOME/.gitignore";
 system "ln -s $PWD/git/.gitignore $HOME/.gitignore";
 print "Done with git files.\n";
 
-# link files - irssi
-print "Linking irssi files...\n";
-
-print "Done with irssi files.\n";
-
 # link files - lynx
 print "Linking lynx files...\n";
-
+system "rm $HOME/.lynxrc";
+system "ln -s $PWD/lynx/.lynxrc $HOME/.lynxrc";
 print "Done with lynx files.\n";
 
 # link files - mpv
@@ -54,7 +50,6 @@ print "Linking mpv files...\n";
 system "rm $HOME/.config/mpv/mpv.conf";
 system "ln -s $PWD/mpv/mpv.conf $HOME/.config/mpv/mpv.conf";
 print "Done with mpv files.\n";
-
 
 # link files - tmux
 print "Linking tmux files...\n";
