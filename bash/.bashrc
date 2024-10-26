@@ -99,7 +99,7 @@ alias lab='cd $GH_REPOS/lab'
 alias ws='cd $WS_DIR'
 alias gh='cd $GH_REPOS'
 alias templates='cd ~/workspace/repos/templates'
-alias dot='cd $GH_REPOSR/dotfiles'
+alias dot='cd $GH_REPOS/dotfiles'
 
 # generate random string
 alias rstr16='date | sha256sum | head -c 16'
