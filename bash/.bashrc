@@ -5,8 +5,7 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-## autoexecute
-# clear history on log in
+## clear history on log in
 cat /dev/null > ~/.bash_history && history -c
 
 ## environment
@@ -16,29 +15,27 @@ export VISUAL='emacsclient -t'
 export PAGER='less'
 export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ '
 export PATH=~/.local/bin:$PATH
-export MYSTUFF=$HOME'/workspace'
 export WS_DIR=$HOME'/workspace'
-export REPOS_DIR=$HOME'/workspace/repos'
-export NOTES_DIR=$HOME'/workspace/repos/notes'
-export LISTS_DIR=$HOME'/workspace/repos/lists'
-export BIN_DIR=$HOME'/workspace/repos/bin'
-export DEV_DIR=$BIN_DIR
-export EMAIL_IDS_FILE=$NOTES_DIR/'email-ids.org'
+export REPOS_DIR=$WS_DIR'/repos'
+export LOCAL_REPOS=$REPOS_DIR'/local'
+export GH_REPOS=$REPOS_DIR'/github/neffercarrillo'
+export NOTES_DIR=$LOCAL_REPOS'/notes'
+export LISTS_DIR=$LOCAL_REPOS'/lists'
+export BIN_DIR=$LOCAL_REPOS'/bin'
+export TEMPLATES_DIR=$LOCAL_REPOS'/templates'
 
 ## aliases
+alias chx='chmod u+x'
+alias play-dnb='mpv https://azura.drmnbss.org/public/dnbradio?autoplay='
+alias net+='emacs $NOTES_DIR/network+.org'
 alias ip='ip -c'
 alias p3='python3'
-alias emailgen-ncd='echo TODO'
-alias emailgen-acs='echo TODO'
-alias emailgen-vcs='echo TODO'
 alias python-script='cat ~/workspace/repos/templates/python/script.py'
 alias perl-script='cat ~/workspace/repos/templates/perl/script.pl'
 alias org-header='cat ~/workspace/repos/templates/org/header.org'
 alias grepr='grep -r'
 alias sn='search-notes'
 alias nn='new-note'
-alias lab='cd ~/workspace/repos/lab'
-alias ws='cd ~/workspace'
 alias org-header='cat ~/workspace/repos/templates/org/header.org'
 alias ?vt='search-virustotal'
 alias ?='search-duckduckgo'
@@ -51,7 +48,7 @@ alias su='su -l'
 alias du='du -h'
 alias mkdir='mkdir -p'
 alias c='clear'
-alias ping='ping -c 1'
+alias ping='ping -c 10'
 alias lock='gnome-screensaver-command -l'
 alias off='systemctl poweroff'
 alias reb='systemctl reboot'
@@ -87,7 +84,7 @@ alias r='source ~/.bashrc'
 
 # navigation 
 alias ..='cd ..'
-alias dev='cd $DEV_DIR'
+alias dev='cd $BIN_DIR'
 alias bin='cd $BIN_DIR'
 alias notes='cd $NOTES_DIR'
 alias lists='cd $LISTS_DIR'
@@ -95,6 +92,9 @@ alias dl='cd ~/Downloads'
 alias conf='cd ~/.config'
 alias vmimages='cd ~/.local/share/libvirt/images'
 alias repos='cd $REPOS_DIR'
+alias lab='cd $GH_REPOS/lab'
+alias ws='cd $WS_DIR'
+alias gh='cd $GH_REPOS'
 
 # generate random string
 alias rstr16='date | sha256sum | head -c 16'
@@ -105,13 +105,23 @@ alias yuup='sudo apt update && sudo apt upgrade -y && sudo apt autoremove'
 alias yush='sudo apt update && sudo apt upgrade -y && sudo apt autoremove && systemctl poweroff'
 alias yure='sudo apt update && sudo apt upgrade -y && sudo apt autoremove && systemctl reboot'
 
+# git
+alias gic='git commit -m'
+alias gil='git log'
+alias gis='git status'
+alias gir='git remote'
+alias gib='git branch'
+alias gia='git add -A'
+alias gico='git checkout'
+alias gim='git merge'
+
 # functions
 function search-notes(){
     grep -r $1 $NOTES_DIR
 }
 
-PATH="/home/ncd/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/ncd/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/ncd/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/ncd/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/ncd/perl5"; export PERL_MM_OPT;
+PATH="/home/$USER/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/$USER/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/$USER/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/$USER/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/$USER/perl5"; export PERL_MM_OPT;
