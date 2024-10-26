@@ -5,10 +5,10 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-## clear history on log in
+# clear history on log in
 cat /dev/null > ~/.bash_history && history -c
 
-## environment
+# environment
 export BROWSER='firefox'
 export EDITOR='emacsclient -t'
 export VISUAL='emacsclient -t'
@@ -25,9 +25,10 @@ export BIN_DIR=$LOCAL_REPOS'/bin'
 export TEMPLATES_DIR=$LOCAL_REPOS'/templates'
 
 ## aliases
+
+# misc.
 alias chx='chmod u+x'
 alias play-dnb='mpv https://azura.drmnbss.org/public/dnbradio?autoplay='
-alias net+='emacs $NOTES_DIR/network+.org'
 alias ip='ip -c'
 alias p3='python3'
 alias python-script='cat ~/workspace/repos/templates/python/script.py'
@@ -40,10 +41,6 @@ alias org-header='cat ~/workspace/repos/templates/org/header.org'
 alias ?vt='search-virustotal'
 alias ?='search-duckduckgo'
 alias emacs='emacsclient -t'
-alias dot='cd $REPOS_DIR/dotfiles'
-alias eb='$EDITOR ~/.bashrc'
-alias ev='$EDITOR ~/.vimrc'
-alias ee='$EDITOR ~/.emacs'
 alias su='su -l'
 alias du='du -h'
 alias mkdir='mkdir -p'
@@ -54,15 +51,21 @@ alias off='systemctl poweroff'
 alias reb='systemctl reboot'
 alias semacs='sudo emacs'
 alias ppjson='python -m json.tool'
-alias bk='$EDITOR ~/workspace/notes/bookmarks'
+alias tmpvm='virt-clone --connect qemu:///system --original debian12-gnome --name tmpvm --auto-clone && virsh --connect qemu:///system start tmpvm && virt-viewer --connect qemu:///system --attach tmpvm && virsh --connect qemu:///system undefine tmpvm && rm -f ~/.local/share/libvirt/images/tmpvm.qcow2'
+alias dig='dig +noall +answer'
+
+# quick edits
+alias eb='$EDITOR ~/.bashrc'
+alias ev='$EDITOR ~/.vimrc'
+alias ee='$EDITOR ~/.emacs'
+alias net+='$EDITOR $NOTES_DIR/network+.org'
+
+# apt
 alias ai='sudo apt update && sudo apt install -y'
 alias au='sudo apt update && sudo apt upgrade -y && sudo apt autoremove'
 alias as='apt search'
 alias aush='sudo apt update && sudo apt upgrade -y && systemctl poweroff'
 alias aure='sudo apt update && sudo apt upgrade -y && systemctl reboot'
-alias tmpvm='virt-clone --connect qemu:///system --original debian12-gnome --name tmpvm --auto-clone && virsh --connect qemu:///system start tmpvm && virt-viewer --connect qemu:///system --attach tmpvm && virsh --connect qemu:///system undefine tmpvm && rm -f ~/.local/share/libvirt/images/tmpvm.qcow2'
-alias dig='dig +noall +answer'
-alias templates='cd ~/workspace/repos/templates'
 
 # safety
 alias rm='rm -i'
@@ -95,15 +98,12 @@ alias repos='cd $REPOS_DIR'
 alias lab='cd $GH_REPOS/lab'
 alias ws='cd $WS_DIR'
 alias gh='cd $GH_REPOS'
+alias templates='cd ~/workspace/repos/templates'
+alias dot='cd $REPOS_DIR/dotfiles'
 
 # generate random string
 alias rstr16='date | sha256sum | head -c 16'
 alias rstr10='date | sha256sum | head -c 10'
-
-# update debian
-alias yuup='sudo apt update && sudo apt upgrade -y && sudo apt autoremove'
-alias yush='sudo apt update && sudo apt upgrade -y && sudo apt autoremove && systemctl poweroff'
-alias yure='sudo apt update && sudo apt upgrade -y && sudo apt autoremove && systemctl reboot'
 
 # git
 alias gic='git commit -m'
