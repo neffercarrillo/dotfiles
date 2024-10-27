@@ -58,6 +58,7 @@ alias dig='dig +noall +answer'
 alias eb='$EDITOR ~/.bashrc'
 alias ev='$EDITOR ~/.vimrc'
 alias ee='$EDITOR ~/.emacs'
+alias et='$EDITOR ~/.tmux.conf'
 alias net+='$EDITOR $NOTES_DIR/network+.org'
 
 # apt
