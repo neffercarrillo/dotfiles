@@ -114,6 +114,7 @@ alias gib='git branch'
 alias gia='git add -A'
 alias gico='git checkout'
 alias gim='git merge'
+alias giac='git add -A;git commit -m'
 
 # functions
 function search-notes(){
