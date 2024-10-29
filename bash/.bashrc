@@ -84,7 +84,7 @@ alias ll.='ls -la'
 alias grep='grep -i --color=always'
 
 # reload bashrc
-alias r='source ~/.bashrc'
+alias r='source ~/.bashrc;echo ".bashrc reloaded."'
 
 # navigation 
 alias ..='cd ..'
