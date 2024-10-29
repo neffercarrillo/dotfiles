@@ -35,10 +35,10 @@ alias p3='python3'
 alias python-script='cat ~/workspace/repos/templates/python/script.py'
 alias perl-script='cat ~/workspace/repos/templates/perl/script.pl'
 alias org-header='cat ~/workspace/repos/templates/org/header.org'
-alias grepr='grep -r'
 alias sn='search-notes'
 alias nn='new-note'
 alias org-header='cat ~/workspace/repos/templates/org/header.org'
+alias ?perl='perldoc -q'
 alias ?vt='search-virustotal'
 alias ?='search-duckduckgo'
 alias emacs='emacsclient -t'
@@ -83,6 +83,7 @@ alias ll.='ls -la'
 
 # grep
 alias grep='grep -i --color=always'
+alias grepr='grep -r'
 
 # reload bashrc
 alias r='source ~/.bashrc;echo ".bashrc reloaded."'
