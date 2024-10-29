@@ -27,6 +27,7 @@ export TEMPLATES_DIR=$LOCAL_REPOS'/templates'
 ## aliases
 
 # misc.
+alias diff='diff -y'
 alias chx='chmod u+x'
 alias play-dnb='mpv https://azura.drmnbss.org/public/dnbradio?autoplay='
 alias ip='ip -c'
