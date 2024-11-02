@@ -13,7 +13,7 @@ export BROWSER='firefox'
 export EDITOR='emacsclient -t'
 export VISUAL='emacsclient -t'
 export PAGER='less'
-export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ '
+#export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ '
 export PATH=~/.local/bin:$PATH
 export WS_DIR=$HOME'/workspace'
 export REPOS_DIR=$WS_DIR'/repos'
@@ -23,6 +23,18 @@ export NOTES_DIR=$LOCAL_REPOS'/notes'
 export LISTS_DIR=$LOCAL_REPOS'/lists'
 export BIN_DIR=$LOCAL_REPOS'/bin'
 export TEMPLATES_DIR=$LOCAL_REPOS'/templates'
+export PS1_COLOR_USER='\[\e[1;34m\]'
+export PS1_COLOR_AT='\[\e[1;33m\]'
+export PS1_COLOR_HOST='\[\e[32m\]'
+export PS1_COLOR_COLON='\[\e[01m\]'
+export PS1_COLOR_PWD='\[\e[36m\]'
+export PS1_COLOR_GIT='\[\e[1;35m\]'
+export PS1_COLOR_PRIVS='\[\e[1m\]'
+export PS1_COLOR_STOP='\[\e[00m\]'
+#export PS1=$PS1_COLOR_USER'\u'$PS1_COLOR_AT'@'$PS1_COLOR_HOST'\h'$PS1_COLOR_COLON':' $PS1_COLOR_PWD'\w'$PS1_COLOR_GIT'$(__git_ps1)\n'$PS1_COLOR_PRIVS'\$ '
+export PS1=$PS1_COLOR_USER'\u'$PS1_COLOR_AT'@'$PS1_COLOR_HOST'\h'$PS1_COLOR_COLON':'$PS1_COLOR_PWD'\w'$PS1_COLOR_GIT'$(__git_ps1)\n'$PS1_COLOR_PRIVS'\$ '$PS1_COLOR_STOP
+
+#export PS1='$PS1_COLOR_USER\u$PS1_COLOR_AT@$PS1_COLOR_HOST\h$PS1_COLOR_COLON:$PS1_COLOR_PWD\w$PS1_COLOR_GIT\$(__git_ps1)\n$PS1_COLOR_PRIVS\$ $PS1_COLOR_STOP'
 
 ## aliases
 
