@@ -32,9 +32,14 @@ export PS1_COLOR_GIT='\[\e[1;35m\]'
 export PS1_COLOR_PRIVS='\[\e[1m\]'
 export PS1_COLOR_STOP='\[\e[00m\]'
 #export PS1=$PS1_COLOR_USER'\u'$PS1_COLOR_AT'@'$PS1_COLOR_HOST'\h'$PS1_COLOR_COLON':' $PS1_COLOR_PWD'\w'$PS1_COLOR_GIT'$(__git_ps1)\n'$PS1_COLOR_PRIVS'\$ '
-export PS1=$PS1_COLOR_USER'\u'$PS1_COLOR_AT'@'$PS1_COLOR_HOST'\h'$PS1_COLOR_COLON':'$PS1_COLOR_PWD'\w'$PS1_COLOR_GIT'$(__git_ps1)\n'$PS1_COLOR_PRIVS'\$ '$PS1_COLOR_STOP
-
 #export PS1='$PS1_COLOR_USER\u$PS1_COLOR_AT@$PS1_COLOR_HOST\h$PS1_COLOR_COLON:$PS1_COLOR_PWD\w$PS1_COLOR_GIT\$(__git_ps1)\n$PS1_COLOR_PRIVS\$ $PS1_COLOR_STOP'
+if [ -f /usr/lib/git-core/git-sh-prompt ]; then
+    source /usr/lib/git-core/git-sh-prompt
+    export PS1=$PS1_COLOR_USER'\u'$PS1_COLOR_AT'@'$PS1_COLOR_HOST'\h'$PS1_COLOR_COLON':'$PS1_COLOR_PWD'\w'$PS1_COLOR_GIT'$(__git_ps1)\n'$PS1_COLOR_PRIVS'\$ '$PS1_COLOR_STOP
+else
+    export PS1=$PS1_COLOR_USER'\u'$PS1_COLOR_AT'@'$PS1_COLOR_HOST'\h'$PS1_COLOR_COLON':'$PS1_COLOR_PWD'\w\n'$PS1_COLOR_PRIVS'\$ '$PS1_COLOR_STOP
+fi
+
 
 ## aliases
 
@@ -135,9 +140,3 @@ alias giac='git add -A;git commit -m'
 function search-notes(){
     grep -r $1 $NOTES_DIR
 }
-
-PATH="/home/$USER/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/$USER/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/$USER/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/$USER/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/$USER/perl5"; export PERL_MM_OPT;
