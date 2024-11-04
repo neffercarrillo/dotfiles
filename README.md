@@ -2,7 +2,7 @@
 
 Repo with my dotfiles.
 
-# How To Use
+## How To Use
 
 1. Clone repo.
 2. Change directory to repo (cd dotfiles).
