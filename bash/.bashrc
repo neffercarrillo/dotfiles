@@ -44,6 +44,7 @@ fi
 ## aliases
 
 # misc.
+alias new-ssh-key='ssh-keygen -t ecdsa -b 521'
 alias diff='diff -y'
 alias chx='chmod u+x'
 alias play-dnb='mpv https://azura.drmnbss.org/public/dnbradio?autoplay='
