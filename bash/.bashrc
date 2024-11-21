@@ -78,7 +78,7 @@ alias eb='$EDITOR ~/.bashrc'
 alias ev='$EDITOR ~/.vimrc'
 alias ee='$EDITOR ~/.emacs'
 alias et='$EDITOR ~/.tmux.conf'
-alias net+='$EDITOR $NOTES_DIR/network+.org'
+alias net+='$EDITOR $GH_REPOS/network-plus/notes/README.md'
 
 # apt
 alias ai='sudo apt update && sudo apt install -y'
@@ -100,7 +100,7 @@ alias ll='ls -l'
 alias ll.='ls -la'
 
 # grep
-alias grep='grep -i --color=always'
+#alias grep='grep -i --color=always'
 alias grepr='grep -r'
 
 # reload bashrc
@@ -120,7 +120,7 @@ alias lab='cd $GH_REPOS/lab'
 alias ws='cd $WS_DIR'
 alias rgh='cd $GH_REPOS'
 alias rlo='cd $LOCAL_REPOS'
-alias templates='cd ~/workspace/repos/templates'
+alias templates='cd $LOCAL_REPOS/templates'
 alias dot='cd $GH_REPOS/dotfiles'
 
 # generate random string
