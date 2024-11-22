@@ -213,6 +213,8 @@
             (org-indent-mode t)) t)
 (setq org-agenda-files '("~/workspace/notes"))
 
+;; fix backspace issue
+(normal-erase-is-backspace-mode 1)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
