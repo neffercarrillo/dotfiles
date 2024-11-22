@@ -12,7 +12,7 @@ cat /dev/null > ~/.bash_history && history -c
 export BROWSER='firefox'
 export EDITOR='emacsclient -t'
 export VISUAL='emacsclient -t'
-export PAGER='less'
+export PAGER='less --use-color'
 #export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ '
 export PATH=~/.local/bin:$PATH
 export WS_DIR=$HOME'/workspace'
