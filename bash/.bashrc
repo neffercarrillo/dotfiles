@@ -70,7 +70,7 @@ alias off='systemctl poweroff'
 alias reb='systemctl reboot'
 alias semacs='sudo emacs'
 alias ppjson='python -m json.tool'
-alias tmpvm='virt-clone --connect qemu:///session --original debian-gnome --name tmpvm --auto-clone && virsh --connect qemu:///system start tmpvm && virt-viewer --connect qemu:///system --attach tmpvm && virsh --connect qemu:///session undefine tmpvm && rm -f ~/.local/share/libvirt/images/tmpvm.qcow2'
+alias tmpvm='virt-clone --connect qemu:///session --original debian-gnome --name tmpvm --auto-clone && virsh --connect qemu:///session start tmpvm && virt-viewer --connect qemu:///session --attach tmpvm && virsh --connect qemu:///session undefine tmpvm && rm -f ~/.local/share/libvirt/images/tmpvm.qcow2'
 alias dig='dig +noall +answer'
 
 # quick edits
