@@ -13,7 +13,6 @@ export BROWSER='firefox'
 export EDITOR='emacsclient -t'
 export VISUAL='emacsclient -t'
 export PAGER='less --use-color'
-#export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ '
 export PATH=~/.local/bin:$PATH
 export WS_DIR=$HOME'/workspace'
 export REPOS_DIR=$WS_DIR'/repos'
@@ -31,8 +30,6 @@ export PS1_COLOR_PWD='\[\e[36m\]'
 export PS1_COLOR_GIT='\[\e[1;35m\]'
 export PS1_COLOR_PRIVS='\[\e[1m\]'
 export PS1_COLOR_STOP='\[\e[00m\]'
-#export PS1=$PS1_COLOR_USER'\u'$PS1_COLOR_AT'@'$PS1_COLOR_HOST'\h'$PS1_COLOR_COLON':' $PS1_COLOR_PWD'\w'$PS1_COLOR_GIT'$(__git_ps1)\n'$PS1_COLOR_PRIVS'\$ '
-#export PS1='$PS1_COLOR_USER\u$PS1_COLOR_AT@$PS1_COLOR_HOST\h$PS1_COLOR_COLON:$PS1_COLOR_PWD\w$PS1_COLOR_GIT\$(__git_ps1)\n$PS1_COLOR_PRIVS\$ $PS1_COLOR_STOP'
 if [ -f /usr/lib/git-core/git-sh-prompt ]; then
     source /usr/lib/git-core/git-sh-prompt
     export PS1=$PS1_COLOR_USER'\u'$PS1_COLOR_AT'@'$PS1_COLOR_HOST'\h'$PS1_COLOR_COLON':'$PS1_COLOR_PWD'\w'$PS1_COLOR_GIT'$(__git_ps1)\n'$PS1_COLOR_PRIVS'\$ '$PS1_COLOR_STOP
@@ -100,7 +97,6 @@ alias ll='ls -l'
 alias ll.='ls -la'
 
 # grep
-#alias grep='grep -i --color=always'
 alias grepr='grep -r'
 
 # reload bashrc
@@ -122,6 +118,7 @@ alias rgh='cd $GH_REPOS'
 alias rlo='cd $LOCAL_REPOS'
 alias templates='cd $LOCAL_REPOS/templates'
 alias dot='cd $GH_REPOS/dotfiles'
+alias books='cd $WS_DIR/books'
 
 # generate random string
 alias rstr16='date | sha256sum | head -c 16'
