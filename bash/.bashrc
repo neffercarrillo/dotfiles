@@ -42,6 +42,7 @@ fi
 ## aliases
 
 # misc.
+alias python='python3'
 alias new-ssh-key='ssh-keygen -t ecdsa -b 521'
 alias diff='diff -y'
 alias chx='chmod u+x'
@@ -55,7 +56,6 @@ alias sn='search-notes'
 alias nn='new-note'
 alias org-header='cat ~/workspace/repos/templates/org/header.org'
 alias ?perl='perldoc -q'
-alias ?vt='search-virustotal'
 alias ?='search-duckduckgo'
 alias emacs='emacsclient -t'
 alias su='su -l'
@@ -120,6 +120,7 @@ alias rlo='cd $LOCAL_REPOS'
 alias templates='cd $LOCAL_REPOS/templates'
 alias dot='cd $GH_REPOS/dotfiles'
 alias books='cd $WS_DIR/books'
+alias ref='cd $WS_DIR/reference'
 
 # generate random string
 alias rstr16='date | sha256sum | head -c 16'
