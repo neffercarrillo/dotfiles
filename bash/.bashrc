@@ -13,7 +13,7 @@ export BROWSER='firefox'
 export EDITOR='emacsclient -t'
 export VISUAL='emacsclient -t'
 export PAGER='less --use-color'
-export PATH=~/.local/bin:$PATH
+export PATH=~/.local/bin:~/workspace/repos/github/neffercarrillo/scripts/src:$PATH
 export WS_DIR=$HOME'/workspace'
 export REPOS_DIR=$WS_DIR'/repos'
 export LOCAL_REPOS=$REPOS_DIR'/local'
@@ -42,6 +42,7 @@ fi
 ## aliases
 
 # misc.
+alias internet?='ping -c 10 8.8.8.8'
 alias python='python3'
 alias new-ssh-key='ssh-keygen -t ecdsa -b 521'
 alias diff='diff -y'
@@ -49,12 +50,12 @@ alias chx='chmod u+x'
 alias play-dnb='mpv https://azura.drmnbss.org/public/dnbradio?autoplay='
 alias ip='ip -c'
 alias p3='python3'
-alias python-script='cat ~/workspace/repos/templates/python/script.py'
-alias perl-script='cat ~/workspace/repos/templates/perl/script.pl'
-alias org-header='cat ~/workspace/repos/templates/org/header.org'
+#alias python-script='cat ~/workspace/repos/templates/python/script.py'
+#alias perl-script='cat ~/workspace/repos/templates/perl/script.pl'
+#alias org-header='cat ~/workspace/repos/templates/org/header.org'
+#alias org-header='cat ~/workspace/repos/templates/org/header.org'
 alias sn='search-notes'
 alias nn='new-note'
-alias org-header='cat ~/workspace/repos/templates/org/header.org'
 alias ?perl='perldoc -q'
 alias ?='search-duckduckgo'
 alias emacs='emacsclient -t'
