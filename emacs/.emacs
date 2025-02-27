@@ -207,12 +207,6 @@
 ;; TODO: check what this does.
 ;; (wrap-region-global-mode t)
 
-;; org-mode
-(add-hook 'org-mode-hook
-          (lambda ()
-            (org-indent-mode t)) t)
-(setq org-agenda-files '("~/workspace/notes"))
-
 ;; fix backspace issue
 (normal-erase-is-backspace-mode 1)
 
