@@ -158,13 +158,17 @@
 (if (eq system-type 'windows-nt)
   (setq explicit-shell-file-name "C:/Program Files/Git/bin/bash.exe")
   (setq explicit-shell-file-name "/bin/bash"))                                  ;; set default shell
-(tool-bar-mode -1)                                                              ;; disable toolbar at the top of buffers
+(menu-bar-mode -1)                                                              ;; disable toolbar at the top of buffers
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; packages
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; org-mode
+(add-hook 'org-mode-hook (lambda ()
+                           (electric-indent-local-mode -1)))
 
 ;; dired
 (setq dired-listing-switches "-la --group-directories-first")
