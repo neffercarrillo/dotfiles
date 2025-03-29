@@ -124,8 +124,8 @@ alias books='cd $WS_DIR/books'
 alias ref='cd $WS_DIR/reference'
 
 # generate random string
-alias rstr16='date | sha256sum | head -c 16'
-alias rstr10='date | sha256sum | head -c 10'
+alias rstr16='date | sha256sum | head -c 16 | wl-copy'
+alias rstr10='date | sha256sum | head -c 10 | wl-copy'
 
 # git
 alias gic='git commit -m'
