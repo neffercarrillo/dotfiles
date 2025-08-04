@@ -169,8 +169,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; org-mode
-(add-hook 'org-mode-hook (lambda ()
-                           (electric-indent-local-mode -1)))
+(add-hook 'org-mode-hook
+          (lambda ()
+            (org-indent-mode t)) t)
+(setq org-adapt-indentation nil)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp .t)
+   (python . t)
+   (perl . t)))
+
 
 ;; dired
 (setq dired-listing-switches "-la --group-directories-first")
