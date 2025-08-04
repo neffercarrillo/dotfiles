@@ -1,5 +1,4 @@
 #!/usr/bin/perl
-
 use strict;
 use warnings;
 
@@ -63,12 +62,17 @@ system "rm $HOME/.vimrc";
 system "ln -s $PWD/vim/.vimrc $HOME/.vimrc";
 print "Done with vim files.\n";
 
-
 # link files - x-server
 print "Linking x-server files...\n";
 system "rm $HOME/.Xdefaults";
 system "ln -s $PWD/x-server/.Xdefaults $HOME/.Xdefaults";
 print "Done with x-server files.\n";
 
+# link files - containers
+print "Linking container registries file...\n";
+system "rm -rf $HOME/.config/containers/";
+system "mkdir $HOME/.config/containers";
+system "ln -s $PWD/containers/registries.conf $HOME/.config/containers/registries.conf";
+print "Done with container registries file...\n";
 
 print "Done setting up evironment. God speed and Happy computing!\n";
