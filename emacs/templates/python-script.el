@@ -1,7 +1,7 @@
 (defun insert-python-template ()
   "Inserts a basic Python script template."
   (interactive)
-  (insert "#!/usr/bin/env python\n")
+  (insert "#!/usr/bin/python\n")
   (insert "\n")
   (insert "\"\"\"\n")
   (insert "A brief description of the script's purpose.\n")
