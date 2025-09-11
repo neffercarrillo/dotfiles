@@ -2,9 +2,9 @@
   "Inserts a basic Perl script template."
   (interactive)
   (insert "#!/usr/bin/perl\n")
-  (insert "use strict;")
-  (insert "use warnings;")
-  (insert "use feature 'say';")
+  (insert "use strict;\n")
+  (insert "use warnings;\n")
+  (insert "use feature 'say';\n")
   (insert "\n")
   (insert "\"\"\"\n")
   (insert "A brief description of the script's purpose.\n")
