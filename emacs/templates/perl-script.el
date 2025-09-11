@@ -13,4 +13,5 @@
   (insert "sub main {\n")
   (insert "    print('Hello, world!');\n")
   (insert "}\n")
+  (insert "\n")
   (insert "exit(main(@ARGV));"))
