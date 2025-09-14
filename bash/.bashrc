@@ -8,7 +8,9 @@ fi
 # clear history on log in
 cat /dev/null > ~/.bash_history && history -c
 
-# environment
+## environment
+
+# global
 export BROWSER='firefox'
 export EDITOR='emacsclient -t'
 export VISUAL='emacsclient -t'
@@ -21,6 +23,7 @@ export GH_REPOS=$REPOS_DIR'/github/neffercarrillo'
 export NOTES_DIR=$LOCAL_REPOS'/notes'
 export LISTS_DIR=$LOCAL_REPOS'/lists'
 export BIN_DIR=$LOCAL_REPOS'/bin'
+export LOG_DIR=$WS_DIR'/log'
 export TEMPLATES_DIR=$LOCAL_REPOS'/templates'
 export GITHUB_USER='neffercarrillo'
 export PS1_COLOR_USER='\[\e[1;34m\]'
@@ -38,6 +41,10 @@ else
     export PS1=$PS1_COLOR_USER'\u'$PS1_COLOR_AT'@'$PS1_COLOR_HOST'\h'$PS1_COLOR_COLON':'$PS1_COLOR_PWD'\w\n'$PS1_COLOR_PRIVS'\$ '$PS1_COLOR_STOP
 fi
 
+# local
+if [ -f ~/workspace/repos/local/config/.env ]; then
+    source ~/workspace/repos/local/config/.env
+fi
 
 ## aliases
 
