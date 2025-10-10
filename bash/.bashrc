@@ -12,9 +12,9 @@ cat /dev/null > ~/.bash_history && history -c
 
 # global
 export BROWSER='firefox'
-export EDITOR='emacsclient -t'
-export VISUAL='emacsclient -t'
-export PAGER='less --use-color'
+export EDITOR='vim'
+export VISUAL='vim'
+export PAGER='less --use-color --color=dm'
 export PATH=~/.local/bin:~/workspace/repos/github/neffercarrillo/scripts/src:$PATH
 export WS_DIR=$HOME'/workspace'
 export REPOS_DIR=$WS_DIR'/repos'
