@@ -1,4 +1,5 @@
 syntax on
+set noswapfile
 set nocompatible
 set autoindent
 set ruler
