@@ -75,6 +75,7 @@ alias ppjson='python -m json.tool'
 alias tmpvm='virt-clone --connect qemu:///session --original debian-gnome --name tmpvm --auto-clone && virsh --connect qemu:///session start tmpvm && virt-viewer --connect qemu:///session --attach tmpvm && virsh --connect qemu:///session undefine tmpvm && rm -f ~/.local/share/libvirt/images/tmpvm.qcow2'
 alias dig='dig +noall +answer'
 alias ts='tmux new-session -A -s'
+alias dd='dd status=progress'
 
 # quick edits
 alias eb='$EDITOR ~/.bashrc'
