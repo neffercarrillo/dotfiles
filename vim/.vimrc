@@ -8,7 +8,6 @@ set nolist
 set tabstop=4
 set shiftwidth=4
 set showmatch
-set number
 set modeline
 
 " Handle F3 in normal mode
