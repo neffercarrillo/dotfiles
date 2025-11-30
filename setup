@@ -17,6 +17,7 @@ ln -s $PWD/emacs/.emacs $HOME/.emacs
 mkdir -p $HOME/.config/systemd/user
 rm $HOME/.config/systemd/user/emacs.service
 ln -s $PWD/emacs/emacs.service $HOME/.config/systemd/user/emacs.service
+systemctl --user enable --now emacs
 echo "Done with emacs files."
 
 # link files - gdb
