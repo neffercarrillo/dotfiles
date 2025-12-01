@@ -32,8 +32,8 @@ else
 fi
 
 # local
-if [ -f ~/workspace/repos/local/config/.env ]; then
-    source ~/workspace/repos/local/config/.env
+if [ -f ~/workspace/repos/local/config/bash/local.bash ]; then
+    source ~/workspace/repos/local/config/bash/local.bash
 fi
 
 ## aliases
