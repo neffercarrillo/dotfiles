@@ -12,8 +12,8 @@ cat /dev/null > ~/.bash_history && history -c
 
 # global
 export BROWSER='firefox'
-export EDITOR='emacsclient'
-export VISUAL='emacsclient'
+export EDITOR='emacsclient -t'
+export VISUAL='emacsclient -t'
 export PAGER='less --use-color --color=dm'
 export PATH=$PATH:~/.local/bin
 export PS1_COLOR_USER='\[\e[1;34m\]'
