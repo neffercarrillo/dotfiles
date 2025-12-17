@@ -16,7 +16,7 @@ export EDITOR='emacsclient -t'
 export VISUAL='emacsclient -t'
 export PAGER='less --use-color --color=dm'
 export PATH=$PATH:~/.local/bin
-export PS1_COLOR_USER='\[\e[1;34m\]'
+export PS1_COLOR_USER='\[\e[1;33m\]'
 export PS1_COLOR_AT='\[\e[1;33m\]'
 export PS1_COLOR_HOST='\[\e[32m\]'
 export PS1_COLOR_COLON='\[\e[01m\]'
