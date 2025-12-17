@@ -16,19 +16,19 @@ export EDITOR='emacsclient -t'
 export VISUAL='emacsclient -t'
 export PAGER='less --use-color --color=dm'
 export PATH=$PATH:~/.local/bin
-export PS1_COLOR_USER='\[\e[1;33m\]'
-export PS1_COLOR_AT='\[\e[1;33m\]'
-export PS1_COLOR_HOST='\[\e[32m\]'
+export PS1_COLOR_USER='\[\e[38;5;250m\]'
+export PS1_COLOR_AT='\[\e[38;5;244m\]'
+export PS1_COLOR_HOST='\[\e[38;5;37m\]'
 export PS1_COLOR_COLON='\[\e[01m\]'
-export PS1_COLOR_PWD='\[\e[36m\]'
-export PS1_COLOR_GIT='\[\e[1;35m\]'
-export PS1_COLOR_PRIVS='\[\e[1m\]'
-export PS1_COLOR_STOP='\[\e[00m\]'
+export PS1_COLOR_PWD='\[\e[38;5;67m\]'
+export PS1_COLOR_GIT='\[\e[38;5;103m\]'
+export PS1_COLOR_PRIVS='\[\e[38;5;71m\]'
+export PS1_COLOR_RESET='\[\e[00m\]'
 if [ -f /usr/lib/git-core/git-sh-prompt ]; then
     source /usr/lib/git-core/git-sh-prompt
-    export PS1=$PS1_COLOR_USER'\u'$PS1_COLOR_AT'@'$PS1_COLOR_HOST'\h'$PS1_COLOR_COLON':'$PS1_COLOR_PWD'\w'$PS1_COLOR_GIT'$(__git_ps1)\n'$PS1_COLOR_PRIVS'\$ '$PS1_COLOR_STOP
+    export PS1=$PS1_COLOR_USER'\u'$PS1_COLOR_RESET'@'$PS1_COLOR_HOST'\h '$PS1_COLOR_PWD'\w'$PS1_COLOR_GIT'$(__git_ps1) '$PS1_COLOR_PRIVS'\n-> '$PS1_COLOR_RESET
 else
-    export PS1=$PS1_COLOR_USER'\u'$PS1_COLOR_AT'@'$PS1_COLOR_HOST'\h'$PS1_COLOR_COLON':'$PS1_COLOR_PWD'\w\n'$PS1_COLOR_PRIVS'\$ '$PS1_COLOR_STOP
+    export PS1=$PS1_COLOR_USER'\u'$PS1_COLOR_RESET'@'$PS1_COLOR_HOST'\h '$PS1_COLOR_PWD'\w  '$PS1_COLOR_PRIVS'\n-> $'$PS1_COLOR_RESET
 fi
 
 # local
