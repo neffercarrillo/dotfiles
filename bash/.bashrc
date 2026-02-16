@@ -76,6 +76,7 @@ alias au='sudo apt update && sudo apt upgrade -y && sudo apt autoremove'
 alias as='apt search'
 alias aush='sudo apt update && sudo apt upgrade -y && systemctl poweroff'
 alias aure='sudo apt update && sudo apt upgrade -y && systemctl reboot'
+alias ac='sudo apt autoclean && sudo apt autoremove -y'
 
 # safety
 alias rm='rm -i'
