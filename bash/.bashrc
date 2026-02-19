@@ -114,6 +114,7 @@ alias templates='cd $LOCAL_REPOS/templates'
 alias dot='cd $GH_REPOS/dotfiles'
 alias books='cd $WS_DIR/books'
 alias ref='cd $WS_DIR/reference'
+alias log='cd $WS_DIR/log'
 
 # generate random string
 alias rstr16='date | sha256sum | head -c 16 | wl-copy'
