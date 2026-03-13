@@ -72,7 +72,7 @@ alias et='$EDITOR ~/.tmux.conf'
 
 # apt
 alias ai='sudo apt update && sudo apt install -y'
-alias au='sudo apt update && sudo apt upgrade -y && sudo apt autoremove'
+alias au='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y'
 alias as='apt search'
 alias aush='sudo apt update && sudo apt upgrade -y && systemctl poweroff'
 alias aure='sudo apt update && sudo apt upgrade -y && systemctl reboot'
