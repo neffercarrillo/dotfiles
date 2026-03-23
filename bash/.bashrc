@@ -35,6 +35,7 @@ fi
 if [ -f ~/workspace/repos/local/config/bash/local.bash ]; then
     source ~/workspace/repos/local/config/bash/local.bash
 fi
+alias ebl='emacs ~/workspace/repos/local/config/bash/local.bash'
 
 ## aliases
 
