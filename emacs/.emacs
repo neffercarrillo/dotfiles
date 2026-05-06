@@ -126,6 +126,35 @@
   (new-note)
   (insert "* {{TITLE HERE}} :howto: \n** Steps\n\n** References\n\n** Notes\n\n"))
 
+(defun my/save-as (topic)
+  "Rename the current buffer and file using a timestamp and a TOPIC slug.
+The result is formatted as YYYYMMDDHHMM--topic.ext. 
+If the buffer is not visiting a file, it saves to your default notes directory."
+  (interactive "sEnter Note Topic: ")
+  (let* ((default-notes-dir "~/workspace/repos/local/notes/")
+         (current-path (buffer-file-name))
+         (timestamp (format-time-string "%Y%m%d%H%M"))
+         (clean-topic (replace-regexp-in-string " " "-" (downcase topic)))
+         (extension (if current-path (file-name-extension current-path) "org"))
+         (new-name (format "%s--%s.%s" timestamp clean-topic extension))
+         (new-path (expand-file-name new-name 
+                                     (if current-path 
+                                         (file-name-directory current-path) 
+                                       default-notes-dir))))
+    
+    (cond
+     ;; Case 1: Buffer is already visiting a file
+     (current-path
+      (write-file new-path)
+      (when (and (file-exists-p current-path) (not (string= current-path new-path)))
+        (delete-file current-path)
+        (message "Note renamed to: %s (old file deleted)" new-name)))
+     
+     ;; Case 2: Buffer is new and hasn't been saved yet
+     (t
+      (write-file new-path)
+      (message "Note saved as: %s" new-name)))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; keybindings
