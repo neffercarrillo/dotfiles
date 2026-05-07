@@ -1,4 +1,4 @@
-;;-*-mode:elisp-byte-code-*-
+;q;-*-mode:elisp-byte-code-*-
 
 
 ;; Added by Package.el.  This must come before configurations of
@@ -155,6 +155,47 @@ If the buffer is not visiting a file, it saves to your default notes directory."
       (write-file new-path)
       (message "Note saved as: %s" new-name)))))
 
+(defun my/new-note ()
+  "Create a new note with a timestamp name and basic template."
+  (interactive)
+  (let* ((timestamp (format-time-string "%Y%m%d%H%M"))
+         (filename (concat timestamp ".org"))
+         (full-path (expand-file-name filename *my-notes-dir*)))
+    
+    ;; Create directory if it doesn't exist
+    (unless (file-exists-p *my-notes-dir*)
+      (make-directory *my-notes-dir* t))
+    
+    ;; Open the file
+    (find-file full-path)
+    
+    ;; Insert a basic Org-mode template if the file is new
+    (when (= (buffer-size) 0)
+      (insert "#+TITLE: \n") 
+      (insert "#+DATE: " (format-time-string "%Y-%m-%d %H:%M") "\n")
+      (insert "#+FILETAGS: \n\n")
+      (goto-char (point-max)))
+    
+    (message "Started new note: %s" filename)))
+
+(defun my/meeting-notes ()
+  (interactive)
+  (insert "* Attendees \n\n\n")
+  (insert "* Questions \n\n\n")
+  (insert "* Notes \n\n\n")
+  (insert "* My Action Items \n\n\n")
+  (insert "* Team Action Items \n\n\n"))
+
+(defun my/daily-agenda ()
+  (interactive)
+  (insert "* Top 3 \n\n")
+  (insert "** TODO \n")
+  (insert "** TODO \n")
+  (insert "** TODO \n\n")
+  (insert "* Meetings \n\n")
+  (insert "** TODO \n"))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; keybindings
@@ -167,6 +208,10 @@ If the buffer is not visiting a file, it saves to your default notes directory."
 (global-set-key (kbd "C-c t") 'my/get-todo-file)
 (global-set-key (kbd "C-S-i") 'new-info)                                        ;; create a new info note
 (global-set-key (kbd "C-S-h") 'new-howto)                                       ;; create a new howto note
+(global-set-key (kbd "C-c n") 'my/new-note)
+(global-set-key (kbd "C-c s") 'my/save-as)
+(global-set-key (kbd "C-c m") 'my/meeting-notes)
+(global-set-key (kbd "C-c d") 'my/daily-agenda)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
