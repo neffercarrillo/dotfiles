@@ -64,6 +64,7 @@ alias tmpvm='virt-clone --connect qemu:///session --original debian-gnome --name
 alias dig='dig +noall +answer'
 alias ts='tmux new-session -A -s'
 alias dd='dd status=progress'
+alias devbox='podman run --rm -it -v "$(pwd):/workspace:Z" -w /workspace alpine'
 
 # quick edits
 alias eb='$EDITOR ~/.bashrc'
