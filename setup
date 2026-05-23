@@ -65,10 +65,12 @@ ln -s $PWD/x-server/.Xdefaults $HOME/.Xdefaults
 echo "Done with x-server files."
 
 # link files - containers
-echo "Linking container registries file..."
+echo "Linking container files..."
 rm -rf $HOME/.config/containers/
-mkdir $HOME/.config/containers
+#ln -s $PWD/containers $HOME/.config/containers
+mkdir -p $HOME/.config/containers
 ln -s $PWD/containers/registries.conf $HOME/.config/containers/registries.conf
-echo "Done with container registries file..."
+ln -s $PWD/containers/Containerfile $HOME/.config/containers/Containerfile
+echo "Done with container files..."
 
 echo "Done setting up the evironment. God speed and happy computing!!!"
