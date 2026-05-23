@@ -28,7 +28,7 @@ if [ -f /usr/lib/git-core/git-sh-prompt ]; then
     source /usr/lib/git-core/git-sh-prompt
     export PS1=$PS1_COLOR_USER'\u'$PS1_COLOR_RESET'@'$PS1_COLOR_HOST'\h '$PS1_COLOR_PWD'\w'$PS1_COLOR_GIT'$(__git_ps1) '$PS1_COLOR_PRIVS'\n-> '$PS1_COLOR_RESET
 else
-    export PS1=$PS1_COLOR_USER'\u'$PS1_COLOR_RESET'@'$PS1_COLOR_HOST'\h '$PS1_COLOR_PWD'\w  '$PS1_COLOR_PRIVS'\n-> $'$PS1_COLOR_RESET
+    export PS1=$PS1_COLOR_USER'\u'$PS1_COLOR_RESET'@'$PS1_COLOR_HOST'\h '$PS1_COLOR_PWD'\w  '$PS1_COLOR_PRIVS'\n-> '$PS1_COLOR_RESET
 fi
 
 # local
