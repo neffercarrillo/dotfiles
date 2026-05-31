@@ -305,9 +305,10 @@ If the buffer is not visiting a file, it saves to your default notes directory."
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes '(tsdh-dark))
  '(custom-safe-themes
-   '("a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e" default))
+   '("a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e"
+     default))
  '(org-agenda-files nil)
- '(package-selected-packages '(markdown-mode)))
+ '(package-selected-packages '(dockerfile-mode markdown-mode yaml-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
