@@ -25,7 +25,11 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load-theme 'wheatgrass)
+(load-theme 'wombat t)
+;;(custom-set-faces
+;; '(minibuffer-prompt ((t (:foreground "black" :weight bold)))))
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -135,7 +139,7 @@ If the buffer is not visiting a file, it saves to your default notes directory."
          (current-path (buffer-file-name))
          (timestamp (format-time-string "%Y%m%d%H%M"))
          (clean-topic (replace-regexp-in-string " " "-" (downcase topic)))
-         (extension (if current-path (file-name-extension current-path) "org"))
+         (extension (if current-path (file-name-extension current-path) "md"))
          (new-name (format "%s--%s.%s" timestamp clean-topic extension))
          (new-path (expand-file-name new-name 
                                      (if current-path 
@@ -159,7 +163,7 @@ If the buffer is not visiting a file, it saves to your default notes directory."
   "Create a new note with a timestamp name and basic template."
   (interactive)
   (let* ((timestamp (format-time-string "%Y%m%d%H%M"))
-         (filename (concat timestamp ".org"))
+         (filename (concat timestamp ".md"))
          (full-path (expand-file-name filename *my-notes-dir*)))
     
     ;; Create directory if it doesn't exist
@@ -171,29 +175,29 @@ If the buffer is not visiting a file, it saves to your default notes directory."
     
     ;; Insert a basic Org-mode template if the file is new
     (when (= (buffer-size) 0)
-      (insert "#+TITLE: \n") 
-      (insert "#+DATE: " (format-time-string "%Y-%m-%d %H:%M") "\n")
-      (insert "#+FILETAGS: \n\n")
+      (insert "# ") 
       (goto-char (point-max)))
     
     (message "Started new note: %s" filename)))
 
 (defun my/meeting-notes ()
   (interactive)
-  (insert "* Attendees \n\n\n")
-  (insert "* Questions \n\n\n")
-  (insert "* Notes \n\n\n")
-  (insert "* My Action Items \n\n\n")
-  (insert "* Team Action Items \n\n\n"))
+  (insert "# {{MEETING NAME}} \n\n")
+  (insert "## Attendees \n\n\n")
+  (insert "## Questions \n\n\n")
+  (insert "## Notes \n\n\n")
+  (insert "## My Action Items \n\n\n")
+  (insert "## Team Action Items \n\n\n"))
 
 (defun my/daily-agenda ()
   (interactive)
-  (insert "* Top 3 \n\n")
-  (insert "** TODO \n")
-  (insert "** TODO \n")
-  (insert "** TODO \n\n")
-  (insert "* Meetings \n\n")
-  (insert "** TODO \n"))
+  (insert "# Daily Agenda - YYYY-MM-DD \n\n")
+  (insert "## Top 3 \n\n")
+  (insert "- [] TODO \n")
+  (insert "- [] TODO \n")
+  (insert "- [] TODO \n\n")
+  (insert "## Meetings \n\n")
+  (insert "- [] Meeting Name \n"))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
