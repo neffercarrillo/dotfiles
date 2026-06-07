@@ -12,8 +12,8 @@ cat /dev/null > ~/.bash_history && history -c
 
 # global
 export BROWSER='firefox'
-export EDITOR='emacsclient -t'
-export VISUAL='emacsclient -t'
+export EDITOR="emacsclient -t -a ''"
+export VISUAL="emacsclient -t -a ''"
 export PAGER='less --use-color --color=dm'
 export PATH=$PATH:~/.local/bin
 export PS1_COLOR_USER='\[\e[38;5;250m\]'
@@ -56,7 +56,7 @@ alias sn='search-notes'
 alias nn='new-note'
 alias ?perl='perldoc -q'
 alias ?='search-duckduckgo'
-alias emacs='emacsclient -t -a '''
+alias emacs="emacsclient -t -a ''"
 alias su='su -l'
 alias du='du -h'
 alias mkdir='mkdir -p'
@@ -100,7 +100,7 @@ alias ll.='ls -la'
 alias grepr='grep -r'
 
 # reload bashrc
-alias r='source ~/.bashrc;echo ".bashrc reloaded."'
+alias r='source ~/.bashrc && echo ".bashrc reloaded."'
 
 # navigation 
 alias ..='cd ..'
