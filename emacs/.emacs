@@ -19,6 +19,7 @@
 
 (require 'project)
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; theme
@@ -26,9 +27,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (load-theme 'wombat t)
-;;(custom-set-faces
-;; '(minibuffer-prompt ((t (:foreground "black" :weight bold)))))
-
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -48,6 +46,85 @@
 (setq *my-repos-dir* (concat *my-custom-home-dir* "/repos"))
 (setq *my-notes-dir* (concat *my-repos-dir* "/local/notes"))
 (setq *my-lists-dir* (concat *my-repos-dir* "/local/lists"))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; misc
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(cua-mode t)                                                                    ;; enable copy-paste via "usual" commands
+(setq inhibit-startup-message t)                                                ;; no startup message
+(setq make-backup-files nil)                                                    ;; disable backup files
+(setq auto-save-default nil)                                                    ;; disable auto save
+(setq debug-on-error t)                                                         ;; debug messages on
+(setq-default indent-tabs-mode nil)                                             ;; don't use tabs
+(setq-default tab-always-indent 'complete)                                      ;; make tab key do indent first then completion.
+(setq initial-frame-alist '((fullscreen . maximized)))                          ;; maximize screen on start
+(setq column-number-mode t)                                                     ;; show column numbers
+(display-battery-mode)                                                          ;; show battery percentage
+(setq confirm-nonexistent-file-or-buffer nil)                                   ;; turn off confirmation of new buffer/file
+(if (eq system-type 'windows-nt)
+  (setq explicit-shell-file-name "C:/Program Files/Git/bin/bash.exe")
+  (setq explicit-shell-file-name "/bin/bash"))                                  ;; set default shell
+(menu-bar-mode -1)                                                              ;; disable toolbar at the top of buffers
+(normal-erase-is-backspace-mode 1)                                              ;; fix backspace issue
+(global-visual-line-mode t)                                                     ;; set word wrapping for all buffers w/ global-visual-line-mode
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; packages
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; org-mode
+(add-hook 'org-mode-hook
+          (lambda ()
+            (org-indent-mode t)) t)
+(setq org-adapt-indentation nil)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp .t)
+   (python . t)
+   (perl . t)))
+
+;; dired
+(setq dired-listing-switches "-la --group-directories-first")
+
+;; edif
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-split-window-function 'split-window-horizontally)
+
+;; electric-pair-mode
+(electric-pair-mode t)
+
+;; hi-lock-mode
+(global-hi-lock-mode 1)
+
+;; ido-mode
+(ido-mode t)
+(setq ido-use-virtual-buffers t)
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(setq ido-create-new-buffer 'always)
+;; Display ido results vertically, rather than horizontally
+(setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
+(defun ido-disable-line-truncation () (set (make-local-variable 'truncate-lines) nil))
+(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-truncation)
+(defun ido-define-keys () ;; C-n/p is more intuitive in vertical layout
+  (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+  (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
+(add-hook 'ido-setup-hook 'ido-define-keys)
+
+;; show-paren-mode
+(show-paren-mode 1)                         ;; highlight matching parens
+(setq show-paren-style 'parenthesis)
+
+;; vc-mode
+(setq vc-follow-symlinks t)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -180,7 +257,7 @@ If the buffer is not visiting a file, it saves to your default notes directory."
     
     (message "Started new note: %s" filename)))
 
-(defun my/meeting-notes ()
+(defun my/templates/meeting-notes ()
   (interactive)
   (insert "# {{MEETING NAME}} \n\n")
   (insert "## Attendees \n\n\n")
@@ -189,7 +266,7 @@ If the buffer is not visiting a file, it saves to your default notes directory."
   (insert "## My Action Items \n\n\n")
   (insert "## Team Action Items \n\n\n"))
 
-(defun my/daily-agenda ()
+(defun my/templates/daily-agenda ()
   (interactive)
   (insert "# Daily Agenda - YYYY-MM-DD \n\n")
   (insert "## Top 3 \n\n")
@@ -214,93 +291,16 @@ If the buffer is not visiting a file, it saves to your default notes directory."
 (global-set-key (kbd "C-S-h") 'new-howto)                                       ;; create a new howto note
 (global-set-key (kbd "C-c n") 'my/new-note)
 (global-set-key (kbd "C-c s") 'my/save-as)
-(global-set-key (kbd "C-c m") 'my/meeting-notes)
-(global-set-key (kbd "C-c d") 'my/daily-agenda)
+(global-set-key (kbd "C-c m") 'my/templates/meeting-notes)
+(global-set-key (kbd "C-c d") 'my/templates/daily-agenda)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; misc
+;; custom set variables - added by Custom.
+;; Do not edit by hand bellow this section.
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(cua-mode t)                                                                    ;; enable copy-paste via "usual" commands
-(setq inhibit-startup-message t)                                                ;; no startup message
-(setq make-backup-files nil)                                                    ;; disable backup files
-(setq auto-save-default nil)                                                    ;; disable auto save
-(setq debug-on-error t)                                                         ;; debug messages on
-(setq-default indent-tabs-mode nil)                                             ;; don't use tabs
-(setq-default tab-always-indent 'complete)                                      ;; make tab key do indent first then completion.
-(setq initial-frame-alist '((fullscreen . maximized)))                          ;; maximize screen on start
-(setq column-number-mode t)                                                     ;; show column numbers
-(display-battery-mode)                                                          ;; show battery percentage
-(setq confirm-nonexistent-file-or-buffer nil)                                   ;; turn off confirmation of new buffer/file
-(if (eq system-type 'windows-nt)
-  (setq explicit-shell-file-name "C:/Program Files/Git/bin/bash.exe")
-  (setq explicit-shell-file-name "/bin/bash"))                                  ;; set default shell
-(menu-bar-mode -1)                                                              ;; disable toolbar at the top of buffers
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; packages
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; org-mode
-(add-hook 'org-mode-hook
-          (lambda ()
-            (org-indent-mode t)) t)
-(setq org-adapt-indentation nil)
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((emacs-lisp .t)
-   (python . t)
-   (perl . t)))
-
-
-;; dired
-(setq dired-listing-switches "-la --group-directories-first")
-
-;; edif
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
-(setq ediff-split-window-function 'split-window-horizontally)
-
-;; electric-pair-mode
-(electric-pair-mode t)
-
-;; hi-lock-mode
-(global-hi-lock-mode 1)
-
-;; ido mode
-(ido-mode t)
-(setq ido-use-virtual-buffers t)
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(setq ido-create-new-buffer 'always)
-;; Display ido results vertically, rather than horizontally
-(setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
-(defun ido-disable-line-truncation () (set (make-local-variable 'truncate-lines) nil))
-(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-truncation)
-(defun ido-define-keys () ;; C-n/p is more intuitive in vertical layout
-  (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
-  (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
-(add-hook 'ido-setup-hook 'ido-define-keys)
-
-;; show-paren mode
-(show-paren-mode 1)                         ;; highlight matching parens
-(setq show-paren-style 'parenthesis)
-
-;; vc-mode
-(setq vc-follow-symlinks t)
-
-;; set word wrapping for all buffers w/ global-visual-line-mode
-(global-visual-line-mode t)
-
-;; TODO: check what this does.
-;; (wrap-region-global-mode t)
-
-;; fix backspace issue
-(normal-erase-is-backspace-mode 1)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
