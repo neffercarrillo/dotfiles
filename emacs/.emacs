@@ -71,7 +71,8 @@
 (menu-bar-mode -1)                                                              ;; disable toolbar at the top of buffers
 (normal-erase-is-backspace-mode 1)                                              ;; fix backspace issue
 (global-visual-line-mode t)                                                     ;; set word wrapping for all buffers w/ global-visual-line-mode
-
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
