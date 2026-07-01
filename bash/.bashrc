@@ -128,7 +128,7 @@ alias rstr10='date | sha256sum | head -c 10 | wl-copy'
 
 # git
 alias gic='git commit -m'
-alias gil='git log'
+alias gil='git log --oneline'
 alias gis='git status'
 alias gir='git remote'
 alias gib='git branch'

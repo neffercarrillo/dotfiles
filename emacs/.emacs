@@ -208,34 +208,56 @@
   (new-note)
   (insert "* {{TITLE HERE}} :howto: \n** Steps\n\n** References\n\n** Notes\n\n"))
 
-(defun my/save-as (topic)
+(defun my/get-markdown-h1-slug ()
+  "Extracts a slug from the first line of the buffer if it's a Markdown H1.
+Returns nil if the line is empty, just a '#', or not an H1."
+  (save-excursion
+    (goto-char (point-min))
+    (let ((first-line (string-trim (buffer-substring-no-properties (line-beginning-position) (line-end-position)))))
+      (if (string-match "^#\\s-+\\(.+\\)$" first-line)
+          (let ((title (match-string 1 first-line)))
+            ;; Downcase, replace spaces/underscores with hyphens, and remove non-alphanumeric/non-hyphen chars
+            (let* ((slug (downcase title))
+                   (slug (replace-regexp-in-string "[ _]+" "-" slug))
+                   (slug (replace-regexp-in-string "[^a-z0-9-]" "" slug)))
+              (if (string-empty-p slug) nil slug)))
+        nil))))
+
+(defun my/save-as (&optional topic)
   "Rename the current buffer and file using a timestamp and a TOPIC slug.
-The result is formatted as YYYYMMDDHHMM--topic.ext. 
-If the buffer is not visiting a file, it saves to your default notes directory."
-  (interactive "sEnter Note Topic: ")
+The result is formatted as YYYYMMDDHHMM--topic.ext.
+Attempts to grab the slug from the first line's Markdown H1 header. Fallbacks to prompting
+the user if the line is empty, invalid, or just '#'."
+  (interactive)
   (let* ((default-notes-dir "~/workspace/repos/local/notes/")
          (current-path (buffer-file-name))
          (timestamp (format-time-string "%Y%m%d%H%M"))
-         (clean-topic (replace-regexp-in-string " " "-" (downcase topic)))
+         ;; 1. Try to get slug from H1 header
+         (detected-slug (my/get-markdown-h1-slug))
+         ;; 2. Fallback to user input if no valid slug was found
+         (final-topic (or detected-slug 
+                          (let ((input (read-string "Enter Note Topic: ")))
+                            ;; Sanitize the manual input just in case
+                            (let* ((clean (downcase input))
+                                   (clean (replace-regexp-in-string "[ _]+" "-" clean)))
+                              (replace-regexp-in-string "[^a-z0-9-]" "" clean)))))
          (extension (if current-path (file-name-extension current-path) "md"))
-         (new-name (format "%s--%s.%s" timestamp clean-topic extension))
+         (new-name (format "%s--%s.%s" timestamp final-topic extension))
          (new-path (expand-file-name new-name 
                                      (if current-path 
                                          (file-name-directory current-path) 
                                        default-notes-dir))))
     
-    (cond
-     ;; Case 1: Buffer is already visiting a file
-     (current-path
-      (write-file new-path)
-      (when (and (file-exists-p current-path) (not (string= current-path new-path)))
-        (delete-file current-path)
-        (message "Note renamed to: %s (old file deleted)" new-name)))
-     
-     ;; Case 2: Buffer is new and hasn't been saved yet
-     (t
-      (write-file new-path)
-      (message "Note saved as: %s" new-name)))))
+    ;; Example logic to actually write/rename the file (retained from typical save-as behavior)
+    (if current-path
+        (progn
+          (rename-file current-path new-path 1)
+          (set-visited-file-name new-path)
+          (set-buffer-modified-p nil)
+          (message "File renamed to: %s" new-name))
+      (progn
+        (write-file new-path)
+        (message "File saved to: %s" new-path)))))
 
 (defun my/new-note ()
   "Create a new note with a timestamp name and basic template."
