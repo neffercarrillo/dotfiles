@@ -145,18 +145,18 @@
   (interactive)
   (dired *my-notes-dir*))
 
-(defun create-org-file-with-timestamp ()
-  "Create a new org file with the current date and time in the filename, in ISO format without spaces or colons, and switch to the new buffer."
+(defun create-md-file-with-timestamp ()
+  "Create a new md file with the current date and time in the filename, in ISO format without spaces or colons, and switch to the new buffer."
   (interactive)
   (let* ((current-time (format-time-string "%Y-%m-%dT%H-%M-%S"))
-         (filename (concat current-time ".org"))
+         (filename (concat current-time ".md"))
          (filepath (concat *my-notes-dir* "/" filename)))
     (find-file filepath) ;; Open or create the new file and switch to it
-    (insert "#+title: " "\n" "#+author: Neffer Carrillo" "\n" "#+date: " current-time "\n" "#+filetags: "  "\n\n"))) ;; Insert the title and stay in the new bufferx
+    (insert "# "))) ;; Insert the title and stay in the new bufferx
 
 (defun nn ()
   (interactive)
-  (create-org-file-with-timestamp))
+  (create-md-file-with-timestamp))
 
 (defun cb()
   (interactive)
