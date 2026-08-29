@@ -12,10 +12,10 @@ cat /dev/null > ~/.bash_history && history -c
 
 # global
 export BROWSER='firefox'
-export EDITOR="emacsclient"
-export VISUAL="emacsclient"
+export EDITOR="emacsclient -t"
+export VISUAL=$EDITOR
 export PAGER='less --use-color --color=dm'
-export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/.local/bin:~/.local/tools
 export PS1_COLOR_USER='\[\e[38;5;250m\]'
 export PS1_COLOR_AT='\[\e[38;5;244m\]'      # Mid Gray
 export PS1_COLOR_HOST='\[\e[38;5;226m\]'    # Yellow
@@ -39,7 +39,7 @@ fi
 if [ -f ~/workspace/repos/local/config/bash/local.bash ]; then
     source ~/workspace/repos/local/config/bash/local.bash
 fi
-alias ebl='emacs ~/workspace/repos/local/config/bash/local.bash'
+alias ebl='$EDITOR ~/workspace/repos/local/config/bash/local.bash'
 
 ## aliases
 
@@ -54,9 +54,6 @@ alias ip='ip -c'
 alias p3='python3'
 alias sn='search-notes'
 alias nn='new-note'
-alias ?perl='perldoc -q'
-alias ?='search-duckduckgo'
-alias emacs="emacsclient -t -a ''"
 alias su='su -l'
 alias du='du -h'
 alias mkdir='mkdir -p'
@@ -69,6 +66,13 @@ alias dig='dig +noall +answer'
 alias ts='tmux new-session -A -s'
 alias dd='dd status=progress'
 alias devbox='podman run --rm -it -v "$(pwd):/workspace:Z" -w /workspace alpine'
+alias dn='daily-note'
+alias ec='emacsclient -t'
+
+# search
+alias ?perl='perldoc -q'
+alias ?='search-duckduckgo'
+alias ?n='search-notes'
 
 # quick edits
 alias eb='$EDITOR ~/.bashrc'
@@ -140,5 +144,5 @@ alias gip='git push'
 
 # functions
 function search-notes(){
-    grep -r $1 $NOTES_DIR
+    grep -ir $1 $NOTES_DIR/*
 }
