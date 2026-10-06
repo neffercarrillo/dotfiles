@@ -88,8 +88,10 @@
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((emacs-lisp .t)
+   (shell . t)
    (python . t)
    (perl . t)))
+(setq org-confirm-babel-evaluate nil)
 
 ;; dired
 (setq dired-listing-switches "-la --group-directories-first")
@@ -298,6 +300,10 @@ the user if the line is empty, invalid, or just '#'."
   (insert "- [] TODO \n\n")
   (insert "## Meetings \n\n")
   (insert "- [] Meeting Name \n"))
+
+(defun my/ddg ()
+  (interactive)
+  (eww "https://duckduckgo.com"))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
