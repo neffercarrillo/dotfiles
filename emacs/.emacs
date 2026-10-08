@@ -46,6 +46,7 @@
 (setq *my-repos-dir* (concat *my-custom-home-dir* "/repos"))
 (setq *my-notes-dir* (concat *my-repos-dir* "/local/notes"))
 (setq *my-lists-dir* (concat *my-repos-dir* "/local/lists"))
+(setq *my-bin-dir* (concat *my-repos-dir* "/local/bin"))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -73,6 +74,7 @@
 (global-visual-line-mode t)                                                     ;; set word wrapping for all buffers w/ global-visual-line-mode
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(windmove-default-keybindings)                                                  ;; use shift + arrow to move across panes
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -186,16 +188,20 @@
   (interactive)                 
   (insert (format-time-string "%A, %B %d, %Y")))
 
-(defun my/goto-dir(dir)
-  (dired dir))
+;;(defun my/goto-dir(dir)
+;; (dired dir))
 
 (defun my/goto-repos()
   (interactive)
-  (my/goto-dir my/repos-dir))
+  (dired *my-repos-dir*))
 
 (defun my/goto-home()
   (interactive)
-  (my/goto-dir (my/get-user-root-dir)))
+  (dired (my/get-user-root-dir)))
+
+(defun my/goto-bin()
+  (interactive)
+  (dired *my-bin-dir*))
 
 (defun new-note()
   (find-file (concat *my-notes-dir* "/" (format-time-string "%Y-%m-%d_%H-%M-%S") ".org")))
@@ -241,7 +247,7 @@ the user if the line is empty, invalid, or just '#'."
                           (let ((input (read-string "Enter Note Topic: ")))
                             ;; Sanitize the manual input just in case
                             (let* ((clean (downcase input))
-                                   (clean (replace-regexp-in-string "[ _]+" "-" clean)))
+                                   (clean (replace-regexp-in-string "[ _:]+" "-" clean)))
                               (replace-regexp-in-string "[^a-z0-9-]" "" clean)))))
          (extension (if current-path (file-name-extension current-path) "md"))
          (new-name (format "%s--%s.%s" timestamp final-topic extension))
@@ -275,7 +281,6 @@ the user if the line is empty, invalid, or just '#'."
     ;; Open the file
     (find-file full-path)
     
-    ;; Insert a basic Org-mode template if the file is new
     (when (= (buffer-size) 0)
       (insert "# ") 
       (goto-char (point-max)))
