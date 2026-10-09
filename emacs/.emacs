@@ -1,4 +1,4 @@
-;q;-*-mode:elisp-byte-code-*-
+;;-*-mode:elisp-byte-code-*-
 
 
 ;; Added by Package.el.  This must come before configurations of
@@ -75,6 +75,16 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (windmove-default-keybindings)                                                  ;; use shift + arrow to move across panes
+(tab-bar-mode 1)
+;; Show the tab number before each name, so you can press M-1 ... M-9 style
+;; numbers (or C-x t t and the number) to jump quickly.
+(setq tab-bar-tab-hints t)
+
+;; Hide the bar when there's only one tab.
+(setq tab-bar-show 1)
+
+;; Give new tabs a name based on the current buffer instead of "Tab 2".
+(setq tab-bar-new-tab-choice "*scratch*")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -341,8 +351,7 @@ the user if the line is empty, invalid, or just '#'."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(tsdh-dark))
- '(custom-safe-themes
+  '(custom-safe-themes
    '("a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e"
      default))
  '(org-agenda-files nil)
