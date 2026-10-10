@@ -74,7 +74,8 @@
 (global-visual-line-mode t)                                                     ;; set word wrapping for all buffers w/ global-visual-line-mode
 (scroll-bar-mode -1)
 (windmove-default-keybindings)                                                  ;; use shift + arrow to move across panes
-;; (tab-bar-mode 1)
+(tool-bar-mode -1)
+(tab-bar-mode -1)
 ;; (setq tab-bar-tab-hints t)                                                      ;; Show the tab number before each name, so you can press M-1 ... M-9 style numbers (or C-x t t and the number) to jump quickly.
 ;; (setq tab-bar-show 1)                                                           ;; Hide the bar when there's only one tab.
 ;; (setq tab-bar-new-tab-choice "*scratch*")                                       ;; Give new tabs a name based on the current buffer instead of "Tab 2".
