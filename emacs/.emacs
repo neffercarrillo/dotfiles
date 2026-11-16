@@ -51,6 +51,15 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
+;; load local configuration
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(load (expand-file-name "local.el" user-emacs-directory) t)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; misc
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -73,7 +82,7 @@
 (normal-erase-is-backspace-mode 1)                                              ;; fix backspace issue
 (global-visual-line-mode t)                                                     ;; set word wrapping for all buffers w/ global-visual-line-mode
 (scroll-bar-mode -1)
-(windmove-default-keybindings)                                                  ;; use shift + arrow to move across panes
+;;(windmove-default-keybindings)                                                  ;; use shift + arrow to move across panes
 (tool-bar-mode -1)
 (tab-bar-mode -1)
 ;; (setq tab-bar-tab-hints t)                                                      ;; Show the tab number before each name, so you can press M-1 ... M-9 style numbers (or C-x t t and the number) to jump quickly.
@@ -98,6 +107,27 @@
    (python . t)
    (perl . t)))
 (setq org-confirm-babel-evaluate nil)
+(setq org-log-done 'time)
+(setq org-agenda-custom-commands
+      '(("w" "Weekly Accomplishments"
+         tags
+         "TODO=\"DONE\"&CLOSED>=\"<-7d>\"")))
+(defun my/org-add-basic-header ()
+  "Add a basic Org header to the current file if one does not already exist."
+  (interactive)
+  (when (and (derived-mode-p 'org-mode)
+             (not (save-excursion
+                    (goto-char (point-min))
+                    (re-search-forward "^#\\+TITLE:" nil t))))
+    (save-excursion
+      (goto-char (point-min))
+      (insert
+       (format "#+TITLE: %s\n"
+               (file-name-base (or (buffer-file-name)
+                                   (buffer-name))))
+       "#+FILETAGS:\n"
+       "#+STARTUP: overview\n\n"))
+    (message "Org header added.")))
 
 ;; dired
 (setq dired-listing-switches "-la --group-directories-first")
@@ -332,6 +362,12 @@ the user if the line is empty, invalid, or just '#'."
 (global-set-key (kbd "C-c m") 'my/templates/meeting-notes)
 (global-set-key (kbd "C-c d") 'my/templates/daily-agenda)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; open start.org
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(find-file (concat *my-notes-dir* "/start.org"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -345,10 +381,13 @@ the user if the line is empty, invalid, or just '#'."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-  '(custom-safe-themes
+ '(custom-safe-themes
    '("a1289424bbc0e9f9877aa2c9a03c7dfd2835ea51d8781a0bf9e2415101f70a7e"
      default))
- '(org-agenda-files nil)
+ '(org-agenda-files
+   '("~/workspace/repos/local/notes/journal.org.gpg"
+     "/home/ncd/workspace/repos/local/notes/reference.org"
+     "/home/ncd/workspace/repos/local/notes/org-mode.org"))
  '(package-selected-packages '(dockerfile-mode markdown-mode yaml-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
