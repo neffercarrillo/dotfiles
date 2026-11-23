@@ -47,7 +47,7 @@
 (setq *my-notes-dir* (concat *my-repos-dir* "/local/notes"))
 (setq *my-lists-dir* (concat *my-repos-dir* "/local/lists"))
 (setq *my-bin-dir* (concat *my-repos-dir* "/local/bin"))
-
+(setq *my-work-files-dir* (concat *my-custom-home-dir* "/docs"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -182,6 +182,10 @@
 (defun /n ()
   (interactive)
   (dired *my-notes-dir*))
+
+(defun /dev ()
+  (interactive)
+  (my/goto-bin))
 
 (defun create-md-file-with-timestamp ()
   "Create a new md file with the current date and time in the filename, in ISO format without spaces or colons, and switch to the new buffer."
@@ -343,6 +347,51 @@ the user if the line is empty, invalid, or just '#'."
 (defun my/ddg ()
   (interactive)
   (eww "https://duckduckgo.com"))
+
+(defun my/create-docs-dir ()
+  "Create a timestamped topic folder and insert its full path.
+In Org mode, use the current heading as the topic when available."
+  (interactive)
+  (unless (and (boundp '*my-work-files-dir*)
+               (stringp *my-work-files-dir*)
+               (file-directory-p *my-work-files-dir*))
+    (user-error "Set *my-work-files-dir* to an existing directory"))
+  (let* ((heading-topic
+          (when (derived-mode-p 'org-mode)
+            (require 'org)
+            (save-excursion
+              (condition-case nil
+                  (progn
+                    (org-back-to-heading t)
+                    (org-get-heading t t t t))
+                (error nil)))))
+         (topic (if (and heading-topic (not (string-empty-p heading-topic)))
+                    heading-topic
+                  (read-string "Topic: ")))
+         (safe-topic (downcase topic))
+         (safe-topic (replace-regexp-in-string
+                      "[[:space:][:cntrl:]<>:\"/\\\\|?*]" "_" safe-topic))
+         (safe-topic (string-trim safe-topic)))
+    (when (string-empty-p safe-topic)
+      (user-error "Topic must contain at least one filename-safe character"))
+    (let* ((now (current-time))
+           (year (format-time-string "%Y" now))
+           (timestamp (format-time-string "%Y%m%d%H%M" now))
+           (year-directory
+            (expand-file-name year *my-work-files-dir*))
+           (path
+            (expand-file-name
+             (format "%s--%s" timestamp safe-topic)
+             year-directory)))
+      (make-directory year-directory t)
+      (unless (file-directory-p path)
+        (make-directory path))
+      (dolist (subfolder '("archive" "outputs"))
+        (let ((subpath (expand-file-name subfolder path)))
+          (unless (file-directory-p subpath)
+            (make-directory subpath))))
+      (insert (expand-file-name path))
+      (message "Created: %s" path))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
