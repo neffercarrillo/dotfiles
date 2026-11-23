@@ -349,16 +349,16 @@ the user if the line is empty, invalid, or just '#'."
   (eww "https://duckduckgo.com"))
 
 (defun my/create-docs-dir ()
-  "Create a timestamped topic folder and insert its full path.
-In Org mode, use the current heading as the topic when available."
+  "Create a timestamped topic folder and insert its full path as an Org link.
+In Org mode, use the current heading, excluding Org timestamps."
   (interactive)
+  (require 'org)
   (unless (and (boundp '*my-work-files-dir*)
                (stringp *my-work-files-dir*)
                (file-directory-p *my-work-files-dir*))
-    (user-error "Set *my-work-files-dir* to an existing directory"))
+    (user-error "Set *my-work-files-dir* to an existing directory in local.el"))
   (let* ((heading-topic
           (when (derived-mode-p 'org-mode)
-            (require 'org)
             (save-excursion
               (condition-case nil
                   (progn
@@ -366,7 +366,11 @@ In Org mode, use the current heading as the topic when available."
                     (org-get-heading t t t t))
                 (error nil)))))
          (topic (if (and heading-topic (not (string-empty-p heading-topic)))
-                    heading-topic
+                    (string-trim
+                     (replace-regexp-in-string
+                      "[[:space:]]+" " "
+                      (replace-regexp-in-string
+                       org-ts-regexp-both "" heading-topic)))
                   (read-string "Topic: ")))
          (safe-topic (downcase topic))
          (safe-topic (replace-regexp-in-string
@@ -390,8 +394,11 @@ In Org mode, use the current heading as the topic when available."
         (let ((subpath (expand-file-name subfolder path)))
           (unless (file-directory-p subpath)
             (make-directory subpath))))
-      (insert (expand-file-name path))
+      (insert (org-link-make-string
+               (concat "file:" (expand-file-name path))
+               (expand-file-name path)))
       (message "Created: %s" path))))
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
