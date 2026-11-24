@@ -380,7 +380,7 @@ In Org mode, use the current heading, excluding Org timestamps."
       (user-error "Topic must contain at least one filename-safe character"))
     (let* ((now (current-time))
            (year (format-time-string "%Y" now))
-           (timestamp (format-time-string "%Y%m%d%H%M" now))
+           (timestamp (format-time-string "%Y%m%d%H%M%S" now))
            (year-directory
             (expand-file-name year *my-work-files-dir*))
            (path
@@ -390,7 +390,7 @@ In Org mode, use the current heading, excluding Org timestamps."
       (make-directory year-directory t)
       (unless (file-directory-p path)
         (make-directory path))
-      (dolist (subfolder '("archive" "outputs"))
+      (dolist (subfolder '("archive" "outputs" "reference"))
         (let ((subpath (expand-file-name subfolder path)))
           (unless (file-directory-p subpath)
             (make-directory subpath))))
